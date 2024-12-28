@@ -11,7 +11,7 @@ public class MyUserService {
     private final MyUserRepository myUserRepository;
 
     public void tryToSave(MyUser myUser) {
-        if (myUserRepository.findByUsername(myUser.getUsername()).isPresent())
+        if (isUsernameExist(myUser.getUsername()))
             return;
 
         MyUser savedUser = new MyUser(myUser.getUsername(), passwordEncoder.encode(myUser.getPassword()));
