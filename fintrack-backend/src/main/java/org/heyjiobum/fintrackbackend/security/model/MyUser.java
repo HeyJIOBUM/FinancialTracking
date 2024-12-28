@@ -21,5 +21,6 @@ public class MyUser {
     public MyUser(String username, String password) {
         this.username = username;
         this.password = password;
+        this.roles = Role.User.getName();
     }
 }
