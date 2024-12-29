@@ -29,8 +29,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(registry -> registry
                         .requestMatchers("/register", "/login").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasRole("USER")
-                        .requestMatchers("/user/{username:\\w+}").access(isUserOwnerAuthManager())
+                        .requestMatchers("/me/**").hasRole("USER")
                         .anyRequest().permitAll())
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -43,7 +42,7 @@ public class SecurityConfiguration {
         return (authentication, requestContext) -> {
             String authenticationUsername = authentication.get().getName();
             String pathUsername = requestContext.getVariables().get("username");
-            return new AuthorizationDecision(authenticationUsername.equals(pathUsername));
+            return new AuthorizationDecision(pathUsername.equals(authenticationUsername));
         };
     }
 }
