@@ -30,6 +30,9 @@ public class MyUser {
     @OneToMany
     private List<Income> incomes;
 
+    @OneToMany
+    private List<Budget> budgets;
+
     public MyUser(String username, String password) {
         this.username = username;
         this.password = password;
