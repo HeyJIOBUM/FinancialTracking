@@ -12,15 +12,14 @@ import lombok.NoArgsConstructor;
 public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Column(unique=true)
     private String username;
     private String password;
-    private String roles;
+    private String roles = Role.User.getName();
 
     public MyUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.roles = Role.User.getName();
     }
 }
