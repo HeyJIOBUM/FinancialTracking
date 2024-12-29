@@ -2,7 +2,6 @@ package org.heyjiobum.fintrackbackend.security;
 
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.security.jwt.JwtAuthenticationFilter;
-import org.heyjiobum.fintrackbackend.security.jwt.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -22,17 +21,15 @@ import org.springframework.security.web.csrf.CsrfFilter;
 public class SecurityConfiguration {
     private final SessionAuthenticationStrategy tokenCookieSessionAuthenticationStrategy;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CookieAuthenticationService cookieAuthenticationService;
-    private final JwtService jwtService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/home", "/register", "/authenticate").permitAll()
-                        .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/user").hasRole("USER")
+                        .requestMatchers("/register", "/login").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/user/{username:\\w+}").access(isUserOwnerAuthManager())
                         .anyRequest().permitAll())
                 .sessionManagement(sessionManagement -> sessionManagement
