@@ -5,29 +5,26 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.heyjiobum.fintrackbackend.security.model.MyUserService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final MyUserService userService;
     private final String cookieName;
 
     public JwtAuthenticationFilter(JwtService jwtService,
-                                   MyUserService userService,
                                    @Value("${jwt.cookie-name}") String cookieName) {
         this.jwtService = jwtService;
-        this.userService = userService;
         this.cookieName = cookieName;
     }
 
@@ -46,16 +43,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     if (jwtService.isTokenValid(token)) {
                         String username = jwtService.extractUsername(token);
-                        Optional<UserDetails> userDetailsOptional = userService.loadUserDetailsByUsername(username);
-                        if (userDetailsOptional.isPresent()) {
-                            UserDetails userDetails = userDetailsOptional.get();
-                            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                                    userDetails.getUsername(),
-                                    userDetails.getPassword(),
-                                    userDetails.getAuthorities()
-                            );
-                            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                        }
+                        String[] roles = jwtService.extractAuthorities(token).split(",");
+                        Collection<SimpleGrantedAuthority> authorities = Stream.of(roles)
+                                .map(str -> "ROLE_" + str)
+                                .map(SimpleGrantedAuthority::new)
+                                .toList();
+                        RememberMeAuthenticationToken authenticationToken = new RememberMeAuthenticationToken(
+                                token, username, authorities
+                        );
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     }
                 }
                 catch (Exception ignored) {
