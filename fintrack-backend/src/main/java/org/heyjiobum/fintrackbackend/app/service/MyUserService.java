@@ -5,16 +5,14 @@ import org.heyjiobum.fintrackbackend.app.entity.MyUser;
 import org.heyjiobum.fintrackbackend.app.repository.MyUserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class MyUserService {
     private final MyUserRepository myUserRepository;
 
-    public MyUser loadUserByUsername(String username) {
-        return myUserRepository.findByUsername(username).orElse(null);
-    }
-
-    public boolean isUsernameExist(String username) {
-        return myUserRepository.findByUsername(username).isPresent();
+    public Optional<MyUser> findUserByUsername(String username) {
+        return myUserRepository.findByUsername(username);
     }
 }

@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.time.Instant;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -38,8 +35,9 @@ public class JwtService {
     }
 
     private String generateToken(String username, String... roles) {
-        if (userService.isUsernameExist(username)) {
-            long userId = userService.loadUserByUsername(username).getId();
+        Optional<MyUser> user = userService.findUserByUsername(username);
+        if (user.isPresent()) {
+            long userId = user.get().getId();
             String joinedRoles = String.join(",", roles);
 
             Map<String, Object> claims = new HashMap<>();
