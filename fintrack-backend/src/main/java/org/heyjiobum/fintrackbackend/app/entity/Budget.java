@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,13 +19,10 @@ public class Budget {
     private long id;
 
     @OneToMany
-    private List<Category> categories;
+    private Set<Category> categories;
 
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
-
-    @Column(columnDefinition = "DECIMAL(10,2)")
-    private BigDecimal remainingAmount;
 
     @Temporal(TemporalType.DATE)
     private Date fromDate;
@@ -33,7 +30,7 @@ public class Budget {
     @Temporal(TemporalType.DATE)
     private Date toDate;
 
-    public Budget(List<Category> categories,
+    public Budget(Set<Category> categories,
                   BigDecimal amount,
                   Date fromDate,
                   Date toDate) {
