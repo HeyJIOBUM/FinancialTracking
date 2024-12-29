@@ -3,16 +3,18 @@ package org.heyjiobum.fintrackbackend.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.heyjiobum.fintrackbackend.security.model.MyUser;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.time.Instant;
-import java.util.*;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -26,11 +28,24 @@ public class JwtService {
     }
 
     public String generateToken(Authentication authentication) {
-        Map<String, String> claims = new HashMap<>();
-        claims.put("authorities", authentication.getAuthorities().toString());
+        return generateToken(authentication.getName(), String.valueOf(authentication.getAuthorities()));
+    }
+
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(userDetails.getUsername(), String.valueOf(userDetails.getAuthorities()));
+    }
+
+    public String generateToken(MyUser user){
+        return generateToken(user.getUsername(), user.getRoles().split(","));
+    }
+
+    private String generateToken(String username, String... roles) {
+        Map<String, Object> claims = new HashMap<>();
+        String joinedRoles = String.join(",", roles);
+        claims.put("authorities", joinedRoles);
         return Jwts.builder()
                 .claims(claims)
-                .subject(authentication.getName())
+                .subject(username)
                 .issuedAt(Date.from(Instant.now()))
                 .expiration(Date.from(Instant.now().plusMillis(validity)))
                 .signWith(generateKey())
@@ -68,11 +83,6 @@ public class JwtService {
 
     public boolean isTokenValid(String jwt) {
         Claims claims = getClaims(jwt);
-        return claims.getExpiration().after(Date.from(Instant.now()));
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return claims.getExpiration().toInstant().isAfter(Instant.now());
     }
 }
