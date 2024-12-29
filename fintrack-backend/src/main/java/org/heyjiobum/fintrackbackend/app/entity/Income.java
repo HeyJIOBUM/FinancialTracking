@@ -23,6 +23,7 @@ public class Income {
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
 
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     public Income(Category category, BigDecimal amount, Date date) {

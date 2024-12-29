@@ -27,8 +27,10 @@ public class Budget {
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal remainingAmount;
 
+    @Temporal(TemporalType.DATE)
     private Date fromDate;
 
+    @Temporal(TemporalType.DATE)
     private Date toDate;
 
     public Budget(List<Category> categories,
