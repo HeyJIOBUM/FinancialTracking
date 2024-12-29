@@ -19,4 +19,9 @@ public class Category {
     private OperationType operationType;
 
     private String name;
+
+    public Category(OperationType operationType, String name) {
+        this.operationType = operationType;
+        this.name = name;
+    }
 }

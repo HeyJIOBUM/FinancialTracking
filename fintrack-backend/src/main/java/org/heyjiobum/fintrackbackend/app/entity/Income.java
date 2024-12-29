@@ -24,4 +24,10 @@ public class Income {
     private BigDecimal amount;
 
     private Date date;
+
+    public Income(Category category, BigDecimal amount, Date date) {
+        this.category = category;
+        this.amount = amount;
+        this.date = date;
+    }
 }

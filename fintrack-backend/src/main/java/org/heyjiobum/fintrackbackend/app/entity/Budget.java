@@ -30,4 +30,14 @@ public class Budget {
     private Date fromDate;
 
     private Date toDate;
+
+    public Budget(List<Category> categories,
+                  BigDecimal amount,
+                  Date fromDate,
+                  Date toDate) {
+        this.categories = categories;
+        this.amount = amount;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+    }
 }
