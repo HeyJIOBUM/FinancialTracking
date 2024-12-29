@@ -2,8 +2,8 @@ package org.heyjiobum.fintrackbackend.security;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.heyjiobum.fintrackbackend.entity.MyUser;
 import org.heyjiobum.fintrackbackend.security.jwt.JwtService;
-import org.heyjiobum.fintrackbackend.security.model.MyUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;

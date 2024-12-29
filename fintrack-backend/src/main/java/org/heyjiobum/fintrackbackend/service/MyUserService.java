@@ -1,6 +1,8 @@
-package org.heyjiobum.fintrackbackend.security.model;
+package org.heyjiobum.fintrackbackend.service;
 
 import lombok.AllArgsConstructor;
+import org.heyjiobum.fintrackbackend.entity.MyUser;
+import org.heyjiobum.fintrackbackend.repository.MyUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class MyUserService {
         return myUserRepository.findByUsername(username).orElse(null);
     }
 
-    public boolean tryToSave(MyUser myUser) {
+    public boolean tryToRegister(MyUser myUser) {
         if (isUsernameExist(myUser.getUsername()))
             return false;
 

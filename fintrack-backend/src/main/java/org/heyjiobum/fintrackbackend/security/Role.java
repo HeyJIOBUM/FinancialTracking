@@ -1,4 +1,4 @@
-package org.heyjiobum.fintrackbackend.security.model;
+package org.heyjiobum.fintrackbackend.security;
 
 import lombok.Getter;
 
