@@ -1,10 +1,10 @@
-package org.heyjiobum.fintrackbackend.controller;
+package org.heyjiobum.fintrackbackend.app.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.heyjiobum.fintrackbackend.entity.MyUser;
+import org.heyjiobum.fintrackbackend.app.entity.MyUser;
+import org.heyjiobum.fintrackbackend.app.service.MyUserService;
 import org.heyjiobum.fintrackbackend.security.CookieAuthenticationService;
-import org.heyjiobum.fintrackbackend.service.MyUserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

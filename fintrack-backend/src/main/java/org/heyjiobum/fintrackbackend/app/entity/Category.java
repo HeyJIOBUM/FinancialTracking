@@ -1,4 +1,4 @@
-package org.heyjiobum.fintrackbackend.entity;
+package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,5 +1,6 @@
-package org.heyjiobum.fintrackbackend.security.model;
+package org.heyjiobum.fintrackbackend.app.repository;
 
+import org.heyjiobum.fintrackbackend.app.entity.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

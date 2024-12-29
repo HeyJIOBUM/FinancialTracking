@@ -1,4 +1,4 @@
-package org.heyjiobum.fintrackbackend.entity;
+package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

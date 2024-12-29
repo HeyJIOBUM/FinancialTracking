@@ -1,8 +1,8 @@
-package org.heyjiobum.fintrackbackend.service;
+package org.heyjiobum.fintrackbackend.app.service;
 
 import lombok.AllArgsConstructor;
-import org.heyjiobum.fintrackbackend.entity.MyUser;
-import org.heyjiobum.fintrackbackend.repository.MyUserRepository;
+import org.heyjiobum.fintrackbackend.app.entity.MyUser;
+import org.heyjiobum.fintrackbackend.app.repository.MyUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

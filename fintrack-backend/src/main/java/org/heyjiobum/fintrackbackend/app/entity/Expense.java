@@ -1,4 +1,4 @@
-package org.heyjiobum.fintrackbackend.entity;
+package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Income {
+public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
