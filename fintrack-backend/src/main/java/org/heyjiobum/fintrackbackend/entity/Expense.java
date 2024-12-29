@@ -18,9 +18,6 @@ public class Expense {
     private long id;
 
     @ManyToOne
-    private UserExpenses userExpenses;
-
-    @ManyToOne
     private Category category;
 
     @Column(columnDefinition = "DECIMAL(10,2)")
