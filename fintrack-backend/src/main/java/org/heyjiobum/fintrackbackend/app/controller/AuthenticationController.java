@@ -3,7 +3,7 @@ package org.heyjiobum.fintrackbackend.app.controller;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.app.entity.MyUser;
-import org.heyjiobum.fintrackbackend.app.service.MyUserService;
+import org.heyjiobum.fintrackbackend.app.service.AuthenticationService;
 import org.heyjiobum.fintrackbackend.security.CookieAuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 public class AuthenticationController {
-    private MyUserService myUserService;
+    private AuthenticationService authenticationService;
     private CookieAuthenticationService cookieAuthenticationService;
 
     @PostMapping("/register")
     public void register(@RequestBody MyUser myUser, HttpServletResponse response) {
-        boolean isUserRegistered = myUserService.tryToRegister(myUser);
+        boolean isUserRegistered = authenticationService.tryToRegister(myUser);
 
         if (isUserRegistered){
             cookieAuthenticationService.setTokenInCookie(response, myUser);
@@ -29,7 +29,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public void login(@RequestBody MyUser myUser, HttpServletResponse response) {
-        boolean isUserLoggedIn = myUserService.tryToLogin(myUser);
+        boolean isUserLoggedIn = authenticationService.tryToLogin(myUser);
 
         if (isUserLoggedIn){
             cookieAuthenticationService.setTokenInCookie(response, myUser);
