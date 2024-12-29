@@ -5,7 +5,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
+import org.heyjiobum.fintrackbackend.security.CookieAuthenticationService;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,28 +19,21 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @Component
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final String jwtCookieName;
-
-    public JwtAuthenticationFilter(JwtService jwtService,
-                                   @Value("${jwt.cookie-name}") String jwtCookieName) {
-        this.jwtService = jwtService;
-        this.jwtCookieName = jwtCookieName;
-    }
+    private final CookieAuthenticationService cookieAuthenticationService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         if (request.getCookies() != null){
-            Optional<Cookie> cookieOptional = Stream.of(request.getCookies())
-                    .filter(cookie -> cookie.getName().equals(jwtCookieName))
-                    .findFirst();
+            Cookie[] cookies = request.getCookies();
+            Optional<String> tokenOptional = cookieAuthenticationService.extractTokenFromCookies(cookies);
 
-            if (cookieOptional.isPresent()) {
-                Cookie cookie = cookieOptional.get();
-                String token = cookie.getValue();
+            if (tokenOptional.isPresent()) {
+                String token = tokenOptional.get();
                 try {
                     if (jwtService.isTokenValid(token)) {
                         String username = jwtService.extractUsername(token);
