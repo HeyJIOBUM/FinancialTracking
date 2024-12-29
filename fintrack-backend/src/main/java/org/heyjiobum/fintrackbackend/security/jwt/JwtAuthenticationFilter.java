@@ -20,12 +20,12 @@ import java.util.stream.Stream;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final String cookieName;
+    private final String jwtCookieName;
 
     public JwtAuthenticationFilter(JwtService jwtService,
-                                   @Value("${jwt.cookie-name}") String cookieName) {
+                                   @Value("${jwt.cookie-name}") String jwtCookieName) {
         this.jwtService = jwtService;
-        this.cookieName = cookieName;
+        this.jwtCookieName = jwtCookieName;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         if (request.getCookies() != null){
             Optional<Cookie> cookieOptional = Stream.of(request.getCookies())
-                    .filter(cookie -> cookie.getName().equals(cookieName))
+                    .filter(cookie -> cookie.getName().equals(jwtCookieName))
                     .findFirst();
 
             if (cookieOptional.isPresent()) {
@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     if (jwtService.isTokenValid(token)) {
                         String username = jwtService.extractUsername(token);
-                        String[] roles = jwtService.extractAuthorities(token).split(",");
+                        String[] roles = jwtService.extractRoles(token);
                         Collection<SimpleGrantedAuthority> authorities = Stream.of(roles)
                                 .map(str -> "ROLE_" + str)
                                 .map(SimpleGrantedAuthority::new)

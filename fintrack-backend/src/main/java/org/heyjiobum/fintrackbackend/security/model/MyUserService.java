@@ -1,8 +1,6 @@
 package org.heyjiobum.fintrackbackend.security.model;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +12,8 @@ public class MyUserService {
     private final PasswordEncoder passwordEncoder;
     private final MyUserRepository myUserRepository;
 
-    public Optional<UserDetails> loadUserDetailsByUsername(String username) {
-        Optional<MyUser> user = myUserRepository.findByUsername(username);
-        if (user.isPresent()) {
-            var userObj = user.get();
-            return Optional.of(User.builder()
-                    .username(userObj.getUsername())
-                    .password(userObj.getPassword())
-                    .roles(userObj.getRoles().split(","))
-                    .build());
-        } else {
-            return Optional.empty();
-        }
-    }
-
-    public Optional<MyUser> loadUserByUsername(String username) {
-        return myUserRepository.findByUsername(username);
+    public MyUser loadUserByUsername(String username) {
+        return myUserRepository.findByUsername(username).orElse(null);
     }
 
     public boolean tryToSave(MyUser myUser) {

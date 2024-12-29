@@ -6,7 +6,6 @@ import org.heyjiobum.fintrackbackend.security.jwt.JwtService;
 import org.heyjiobum.fintrackbackend.security.model.MyUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -29,11 +28,6 @@ public class CookieAuthenticationService {
     }
 
     public void setTokenInCookie(HttpServletResponse response, MyUser user){
-        String token = jwtService.generateToken(user);
-        setTokenInCookie(response, token);
-    }
-
-    public void setTokenInCookie(HttpServletResponse response, UserDetails user){
         String token = jwtService.generateToken(user);
         setTokenInCookie(response, token);
     }

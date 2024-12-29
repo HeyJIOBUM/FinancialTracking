@@ -4,9 +4,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.heyjiobum.fintrackbackend.security.model.MyUser;
+import org.heyjiobum.fintrackbackend.security.model.MyUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -19,10 +19,12 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class JwtService {
+    private final MyUserService userService;
     private final String secret;
     private final long validity;
 
-    JwtService(@Value("${jwt.secret-key}") String secret) {
+    JwtService(MyUserService userService, @Value("${jwt.secret-key}") String secret) {
+        this.userService = userService;
         this.secret = secret;
         this.validity = TimeUnit.HOURS.toMillis(24);
     }
@@ -31,25 +33,27 @@ public class JwtService {
         return generateToken(authentication.getName(), String.valueOf(authentication.getAuthorities()));
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(userDetails.getUsername(), String.valueOf(userDetails.getAuthorities()));
-    }
-
     public String generateToken(MyUser user){
         return generateToken(user.getUsername(), user.getRoles().split(","));
     }
 
     private String generateToken(String username, String... roles) {
-        Map<String, Object> claims = new HashMap<>();
-        String joinedRoles = String.join(",", roles);
-        claims.put("authorities", joinedRoles);
-        return Jwts.builder()
-                .claims(claims)
-                .subject(username)
-                .issuedAt(Date.from(Instant.now()))
-                .expiration(Date.from(Instant.now().plusMillis(validity)))
-                .signWith(generateKey())
-                .compact();
+        if (userService.isUsernameExist(username)) {
+            long userId = userService.loadUserByUsername(username).getId();
+            String joinedRoles = String.join(",", roles);
+
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("roles", joinedRoles);
+            claims.put("userId", userId);
+            return Jwts.builder()
+                    .claims(claims)
+                    .subject(username)
+                    .issuedAt(Date.from(Instant.now()))
+                    .expiration(Date.from(Instant.now().plusMillis(validity)))
+                    .signWith(generateKey())
+                    .compact();
+        }
+        return null;
     }
 
     private SecretKey generateKey() {
@@ -70,15 +74,20 @@ public class JwtService {
         return claims.getSubject();
     }
 
+    public String extractUserId(String jwt) {
+        Claims claims = getClaims(jwt);
+        return claims.get("userId", String.class);
+    }
+
     public Instant extractExpiration(String jwt) {
         Claims claims = getClaims(jwt);
         Date expiration = claims.getExpiration();
         return expiration.toInstant();
     }
 
-    public String extractAuthorities(String jwt) {
+    public String[] extractRoles(String jwt) {
         Claims claims = getClaims(jwt);
-        return claims.get("authorities", String.class);
+        return claims.get("roles", String.class).split(",");
     }
 
     public boolean isTokenValid(String jwt) {
