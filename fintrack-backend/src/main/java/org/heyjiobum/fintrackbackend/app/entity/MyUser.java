@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.heyjiobum.fintrackbackend.security.Role;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,16 +25,16 @@ public class MyUser {
     private String roles = Role.User.getName();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Category> categories;
+    private List<Category> categories;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Expense> expenses;
+    private List<Expense> expenses;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Income> incomes;
+    private List<Income> incomes;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Budget> budgets;
+    private List<Budget> budgets;
 
     public MyUser(String username, String password) {
         this.username = username;
