@@ -35,4 +35,10 @@ public class Income {
         this.amount = amount;
         this.date = date;
     }
+
+    public void updateIncome(Income income) {
+        this.category = income.category;
+        this.amount = income.amount;
+        this.date = income.date;
+    }
 }

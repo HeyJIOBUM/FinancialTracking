@@ -28,4 +28,9 @@ public class Category {
         this.operationType = operationType;
         this.name = name;
     }
+
+    public void updateCategory(Category category){
+        this.operationType = category.operationType;
+        this.name = category.name;
+    }
 }

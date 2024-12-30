@@ -50,8 +50,7 @@ public class CategoryService {
             if (categoryToUpdateOptional.isPresent()) {
                 Category categoryToUpdate = categoryToUpdateOptional.get();
 
-                categoryToUpdate.setName(category.getName());
-                categoryToUpdate.setOperationType(category.getOperationType());
+                categoryToUpdate.updateCategory(category);
 
                 categoryRepository.save(categoryToUpdate);
             }

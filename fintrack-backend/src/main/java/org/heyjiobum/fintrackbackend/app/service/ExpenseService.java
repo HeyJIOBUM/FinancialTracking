@@ -50,9 +50,7 @@ public class ExpenseService {
             if (expenseToUpdateOptional.isPresent()) {
                 Expense expenseToUpdate = expenseToUpdateOptional.get();
 
-                expenseToUpdate.setAmount(expense.getAmount());
-                expenseToUpdate.setDate(expense.getDate());
-                expenseToUpdate.setCategory(expense.getCategory());
+                expenseToUpdate.updateExpense(expense);
 
                 expenseRepository.save(expenseToUpdate);
             }

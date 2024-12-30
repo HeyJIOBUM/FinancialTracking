@@ -35,4 +35,10 @@ public class Expense {
         this.amount = amount;
         this.date = date;
     }
+
+    public void updateExpense(Expense expense){
+        this.category = expense.category;
+        this.amount = expense.amount;
+        this.date = expense.date;
+    }
 }

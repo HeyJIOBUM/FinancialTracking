@@ -50,9 +50,7 @@ public class IncomeService {
             if (incomeToUpdateOptional.isPresent()) {
                 Income incomeToUpdate = incomeToUpdateOptional.get();
 
-                incomeToUpdate.setAmount(income.getAmount());
-                incomeToUpdate.setDate(income.getDate());
-                incomeToUpdate.setCategory(income.getCategory());
+                incomeToUpdate.updateIncome(income);
 
                 incomeRepository.save(incomeToUpdate);
             }

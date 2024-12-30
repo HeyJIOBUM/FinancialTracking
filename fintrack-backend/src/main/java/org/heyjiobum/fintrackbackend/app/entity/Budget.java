@@ -43,4 +43,11 @@ public class Budget {
         this.fromDate = fromDate;
         this.toDate = toDate;
     }
+
+    public void updateBudget(Budget budget){
+        this.categories = budget.categories;
+        this.amount = budget.amount;
+        this.fromDate = budget.fromDate;
+        this.toDate = budget.toDate;
+    }
 }

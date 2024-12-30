@@ -50,10 +50,7 @@ public class BudgetService {
             if (budgetToUpdateOptional.isPresent()) {
                 Budget budgetToUpdate = budgetToUpdateOptional.get();
 
-                budgetToUpdate.setCategories(budget.getCategories());
-                budgetToUpdate.setAmount(budget.getAmount());
-                budgetToUpdate.setFromDate(budget.getFromDate());
-                budgetToUpdate.setToDate(budget.getToDate());
+                budgetToUpdate.updateBudget(budget);
 
                 budgetRepository.save(budgetToUpdate);
             }
