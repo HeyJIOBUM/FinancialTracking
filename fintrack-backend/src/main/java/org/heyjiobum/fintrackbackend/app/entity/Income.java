@@ -26,6 +26,10 @@ public class Income {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    public Income(long id){
+        this.id = id;
+    }
+
     public Income(Category category, BigDecimal amount, Date date) {
         this.category = category;
         this.amount = amount;

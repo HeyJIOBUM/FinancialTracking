@@ -30,6 +30,10 @@ public class Budget {
     @Temporal(TemporalType.DATE)
     private Date toDate;
 
+    public Budget(long id){
+        this.id = id;
+    }
+
     public Budget(Set<Category> categories,
                   BigDecimal amount,
                   Date fromDate,

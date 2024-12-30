@@ -26,6 +26,10 @@ public class Expense {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    public Expense(long id) {
+        this.id = id;
+    }
+
     public Expense(Category category, BigDecimal amount, Date date) {
         this.category = category;
         this.amount = amount;

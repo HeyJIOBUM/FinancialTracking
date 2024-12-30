@@ -20,6 +20,10 @@ public class Category {
 
     private String name;
 
+    public Category(long id){
+        this.id = id;
+    }
+
     public Category(OperationType operationType, String name) {
         this.operationType = operationType;
         this.name = name;
