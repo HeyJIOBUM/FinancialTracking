@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class MyUserService {
-    private final MyUserRepository myUserRepository;
+    private final MyUserRepository userRepository;
 
     public Optional<MyUser> findUserByUsername(String username) {
-        return myUserRepository.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 }
