@@ -1,5 +1,6 @@
 package org.heyjiobum.fintrackbackend.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.app.entity.Expense;
 import org.heyjiobum.fintrackbackend.app.service.ExpenseService;
@@ -21,7 +22,7 @@ public class ExpensesController {
     }
 
     @PostMapping("/me/expenses")
-    public List<Expense> addUserExpenses(@RequestBody Expense expense) {
+    public List<Expense> addUserExpenses(@Valid @RequestBody Expense expense) {
         String username = this.getCurrentlyAuthenticatedUsername();
         return expenseService.addExpensesToUserByUsername(expense, username);
     }
@@ -33,7 +34,7 @@ public class ExpensesController {
     }
 
     @PutMapping("/me/expenses/{expenseId}")
-    public void updateUserExpense(@PathVariable long expenseId, @RequestBody Expense expense) {
+    public void updateUserExpense(@PathVariable long expenseId, @Valid @RequestBody Expense expense) {
         String username = this.getCurrentlyAuthenticatedUsername();
         expenseService.updateExpenseByExpenseId(expenseId, expense, username);
     }

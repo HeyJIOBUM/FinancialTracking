@@ -1,5 +1,6 @@
 package org.heyjiobum.fintrackbackend.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.app.entity.Income;
 import org.heyjiobum.fintrackbackend.app.service.IncomeService;
@@ -21,7 +22,7 @@ public class IncomesController {
     }
 
     @PostMapping("/me/incomes")
-    public List<Income> addUserIncomes(@RequestBody Income income) {
+    public List<Income> addUserIncomes(@Valid @RequestBody Income income) {
         String username = this.getCurrentlyAuthenticatedUsername();
         return incomeService.addIncomesToUserByUsername(income, username);
     }
@@ -33,7 +34,7 @@ public class IncomesController {
     }
 
     @PutMapping("/me/incomes/{incomeId}")
-    public void updateUserIncome(@PathVariable long incomeId, @RequestBody Income income) {
+    public void updateUserIncome(@PathVariable long incomeId, @Valid @RequestBody Income income) {
         String username = this.getCurrentlyAuthenticatedUsername();
         incomeService.updateIncomeByIncomeId(incomeId, income, username);
     }

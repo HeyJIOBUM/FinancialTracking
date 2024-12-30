@@ -1,5 +1,6 @@
 package org.heyjiobum.fintrackbackend.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.app.entity.Budget;
 import org.heyjiobum.fintrackbackend.app.service.BudgetService;
@@ -21,7 +22,7 @@ public class BudgetsController {
     }
 
     @PostMapping("/me/budgets")
-    public List<Budget> addUserBudgets(@RequestBody Budget budget) {
+    public List<Budget> addUserBudgets(@Valid @RequestBody Budget budget) {
         String username = this.getCurrentlyAuthenticatedUsername();
         return budgetService.addBudgetsToUserByUsername(budget, username);
     }
@@ -33,7 +34,7 @@ public class BudgetsController {
     }
 
     @PutMapping("/me/budgets/{budgetId}")
-    public void updateUserBudget(@PathVariable long budgetId, @RequestBody Budget budget) {
+    public void updateUserBudget(@PathVariable long budgetId, @Valid @RequestBody Budget budget) {
         String username = this.getCurrentlyAuthenticatedUsername();
         budgetService.updateBudgetByBudgetId(budgetId, budget, username);
     }
