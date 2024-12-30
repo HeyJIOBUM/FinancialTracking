@@ -1,4 +1,4 @@
-package org.heyjiobum.fintrackbackend.app.configuration;
+package org.heyjiobum.fintrackbackend.app.entity.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

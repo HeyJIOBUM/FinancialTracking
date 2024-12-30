@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.heyjiobum.fintrackbackend.app.configuration.OperationTypeConverter;
+import org.heyjiobum.fintrackbackend.app.entity.converter.OperationTypeConverter;
 
 @Entity
 @Data
