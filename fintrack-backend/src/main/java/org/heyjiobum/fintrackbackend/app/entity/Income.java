@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Income {
     @ManyToOne
     private Category category;
 
+    @Positive(message = "amount must be positive")
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
 

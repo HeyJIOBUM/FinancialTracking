@@ -1,9 +1,11 @@
 package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.heyjiobum.fintrackbackend.app.entity.validation.ValidateDateRange;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ValidateDateRange(start = "fromDate", end = "toDate", message = "fromDate is after toDate")
 public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +24,7 @@ public class Budget {
     @OneToMany
     private List<Category> categories;
 
+    @Positive(message = "amount must be positive")
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
 
