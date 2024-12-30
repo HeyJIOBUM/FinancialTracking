@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,13 +19,16 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull(message = "category can't be null")
     @ManyToOne
     private Category category;
 
+    @NotNull(message = "amount can't be null")
     @Positive(message = "amount must be positive")
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
 
+    @NotNull(message = "date can't be null")
     @Temporal(TemporalType.DATE)
     private Date date;
 

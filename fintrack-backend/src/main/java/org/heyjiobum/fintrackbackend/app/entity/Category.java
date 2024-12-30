@@ -2,6 +2,7 @@ package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +17,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull(message = "operationType can't be null")
     @Convert(converter = OperationTypeConverter.class)
     private OperationType operationType;
 
-    @NotBlank(message = "name can't be empty")
+    @NotBlank(message = "name can't be blank")
     private String name;
 
     public Category(long id){

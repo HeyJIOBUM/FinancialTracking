@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,13 +25,16 @@ public class Budget {
     @OneToMany
     private List<Category> categories;
 
+    @NotNull(message = "amount can't be null")
     @Positive(message = "amount must be positive")
     @Column(columnDefinition = "DECIMAL(10,2)")
     private BigDecimal amount;
 
+    @NotNull(message = "fromDate can't be null")
     @Temporal(TemporalType.DATE)
     private Date fromDate;
 
+    @NotNull(message = "toDate can't be null")
     @Temporal(TemporalType.DATE)
     private Date toDate;
 
