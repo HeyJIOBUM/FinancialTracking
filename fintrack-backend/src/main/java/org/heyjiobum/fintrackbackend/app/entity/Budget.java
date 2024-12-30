@@ -30,6 +30,8 @@ public class Budget {
     @Temporal(TemporalType.DATE)
     private Date toDate;
 
+    String description;
+
     public Budget(long id){
         this.id = id;
     }
@@ -37,11 +39,13 @@ public class Budget {
     public Budget(List<Category> categories,
                   BigDecimal amount,
                   Date fromDate,
-                  Date toDate) {
+                  Date toDate,
+                  String description) {
         this.categories = categories;
         this.amount = amount;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.description = description;
     }
 
     public void updateBudget(Budget budget){
@@ -49,5 +53,6 @@ public class Budget {
         this.amount = budget.amount;
         this.fromDate = budget.fromDate;
         this.toDate = budget.toDate;
+        this.description = budget.description;
     }
 }
