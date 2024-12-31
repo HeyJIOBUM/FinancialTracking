@@ -18,7 +18,7 @@ public class AuthenticationService {
     public void tryToRegister(MyUser myUser) {
         Optional<MyUser> userInDb = myUserRepository.findByUsername(myUser.getUsername());
         if (userInDb.isPresent())
-            throw new BadCredentialsException("Username exists");
+            throw new BadCredentialsException("Username already exists");
 
 
         MyUser savedUser = new MyUser(myUser.getUsername(), passwordEncoder.encode(myUser.getPassword()));
@@ -28,10 +28,10 @@ public class AuthenticationService {
     public void tryToLogin(MyUser myUser) {
         Optional<MyUser> userInDb = myUserRepository.findByUsername(myUser.getUsername());
         if (userInDb.isEmpty())
-            throw new BadCredentialsException("Bad credentials");
+            throw new BadCredentialsException("Username or password is invalid");
 
         MyUser savedUser = userInDb.get();
         if (!passwordEncoder.matches(myUser.getPassword(), savedUser.getPassword()))
-            throw new BadCredentialsException("Bad credentials");
+            throw new BadCredentialsException("Username or password is invalid");
     }
 }
