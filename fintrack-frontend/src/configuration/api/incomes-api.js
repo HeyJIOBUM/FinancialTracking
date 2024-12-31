@@ -6,7 +6,7 @@ export const incomesApi = applicationApi.injectEndpoints({
             query: () => '/me/incomes',
         }),
         addIncome: build.mutation({
-            query: (income) => ({
+            query: ({income}) => ({
                 url: '/me/incomes',
                 method: 'POST',
                 body: income,
@@ -20,7 +20,7 @@ export const incomesApi = applicationApi.injectEndpoints({
             }),
         }),
         deleteIncome: build.query({
-            query: (id) => ({
+            query: ({id}) => ({
                 url: `/me/incomes/${id}`,
                 method: 'DELETE',
             }),
@@ -28,3 +28,9 @@ export const incomesApi = applicationApi.injectEndpoints({
     }),
 })
 
+export const {
+    useGetIncomesQuery,
+    useAddIncomeMutation,
+    useUpdateIncomeMutation,
+    useDeleteIncomeQuery
+} = incomesApi

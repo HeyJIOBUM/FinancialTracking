@@ -9,14 +9,14 @@ export const categoriesApi = applicationApi.injectEndpoints({
             query: () => '/me/categories',
         }),
         addCategory: build.mutation({
-            query: (category) => ({
+            query: ({category}) => ({
                 url: '/me/categories',
                 method: 'POST',
                 body: [category],
             }),
         }),
         addCategories: build.mutation({
-            query: (categories) => ({
+            query: ({categories}) => ({
                 url: '/me/categories',
                 method: 'POST',
                 body: categories,
@@ -30,7 +30,7 @@ export const categoriesApi = applicationApi.injectEndpoints({
             }),
         }),
         deleteCategory: build.query({
-            query: (id) => ({
+            query: ({id}) => ({
                 url: `/me/categories/${id}`,
                 method: 'DELETE',
             }),
@@ -38,3 +38,11 @@ export const categoriesApi = applicationApi.injectEndpoints({
     }),
 })
 
+export const {
+    useGetDefaultCategoriesQuery,
+    useGetCategoriesQuery,
+    useAddCategoryMutation,
+    useAddCategoriesMutation,
+    useUpdateCategoryMutation,
+    useDeleteCategoryQuery
+} = categoriesApi

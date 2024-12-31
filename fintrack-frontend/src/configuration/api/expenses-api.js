@@ -6,7 +6,7 @@ export const expensesApi = applicationApi.injectEndpoints({
             query: () => '/me/expenses',
         }),
         addExpense: build.mutation({
-            query: (expense) => ({
+            query: ({expense}) => ({
                 url: '/me/expenses',
                 method: 'POST',
                 body: expense,
@@ -20,7 +20,7 @@ export const expensesApi = applicationApi.injectEndpoints({
             }),
         }),
         deleteExpense: build.query({
-            query: (id) => ({
+            query: ({id}) => ({
                 url: `/me/expenses/${id}`,
                 method: 'DELETE',
             }),
@@ -28,3 +28,9 @@ export const expensesApi = applicationApi.injectEndpoints({
     }),
 })
 
+export const {
+    useGetExpensesQuery,
+    useAddExpenseMutation,
+    useUpdateExpenseMutation,
+    useDeleteExpenseQuery
+} = expensesApi
