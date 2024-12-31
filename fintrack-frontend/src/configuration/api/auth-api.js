@@ -1,22 +1,27 @@
-import {applicationApi} from "@/configuration/api/application-api";
+import {base_api_url} from "@/configuration/api/application-api";
 
-export const authApi = applicationApi.injectEndpoints({
-    endpoints: (build) => ({
-        register: build.mutation({
-            query: (body) => ({
-                url: '/register',
-                method: 'POST',
-                body,
-            }),
-        }),
-        login: build.mutation({
-            query: (body) => ({
-                url: '/login',
-                method: 'POST',
-                body,
-            }),
-        }),
-    })
-})
+async function authenticateUser(endpoint, username, password) {
+    try {
+        const response = await fetch(base_api_url + endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ username, password }),
+        });
 
+        return {ok: response.ok, errorMsg: response.ok ? undefined : response.statusText};
+    }
+    catch (err) {
+        return {ok: false, errorMsg: `Error: ${err.message}`};
+    }
+}
 
+export async function register({username, password}) {
+    return await authenticateUser('/register', username, password);
+}
+
+export async function signIn({username, password}) {
+    return await authenticateUser('/login', username, password);
+}
