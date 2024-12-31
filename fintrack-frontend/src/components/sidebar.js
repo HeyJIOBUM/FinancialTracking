@@ -16,7 +16,6 @@ export default function Sidebar() {
                 <div className="flex flex-col space-y-2">
                     {navigationItems.map((item, idx) => {
                         if (item.position === 'top') {
-                            console.log(currentPath)
                             return (
                                 <div key={idx}>
                                     <SideNavItem
