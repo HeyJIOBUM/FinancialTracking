@@ -1,11 +1,12 @@
 package org.heyjiobum.fintrackbackend.app.controller.advice;
 
 import org.heyjiobum.fintrackbackend.app.error.ApplicationError;
+import org.springframework.context.MessageSourceResolvable;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,15 +28,7 @@ public class ControllerExceptionHandler {
         List<String> errors = e
                 .getAllErrors()
                 .stream().filter(Objects::nonNull)
-                .map(messageSourceResolvable -> {
-                    String parameterValue;
-                    parameterValue = messageSourceResolvable.getObjectName();
-
-                    String parameter = "In parameter " + parameterValue;
-                    String error = messageSourceResolvable.getDefaultMessage();
-
-                    return parameter + ": " + error;
-                }).toList();
+                .map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
 
         return new ResponseEntity<>(
                 new ApplicationError(HttpStatus.BAD_REQUEST.value(), String.join("\n", errors)),
@@ -49,12 +42,7 @@ public class ControllerExceptionHandler {
         List<String> errors = e
                 .getAllErrors()
                 .stream()
-                .map(err -> {
-                    String field = "In field " + ((FieldError) err).getField();
-                    String error = err.getDefaultMessage();
-
-                    return field + ": " + error;
-                }).toList();
+                .map(MessageSourceResolvable::getDefaultMessage).toList();
 
         return new ResponseEntity<>(
                 new ApplicationError(HttpStatus.BAD_REQUEST.value(), String.join("\n", errors)),
