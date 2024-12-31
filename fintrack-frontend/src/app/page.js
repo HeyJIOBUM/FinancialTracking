@@ -1,101 +1,75 @@
-import Image from "next/image";
-
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum est dolor, nec pharetra mi feugiat non.
+            Etiam suscipit nisi augue, sit amet fringilla risus ornare id. Donec mi risus, tristique vitae felis non,
+            dapibus efficitur nunc. Fusce scelerisque lacus a neque fringilla auctor. Sed ullamcorper nulla nec lorem
+            placerat interdum. Vestibulum magna diam, sodales non luctus accumsan, iaculis vitae elit. Integer tempus
+            posuere elit eget facilisis. Maecenas convallis aliquam viverra. Pellentesque imperdiet elementum lorem, id
+            venenatis est vehicula at. Aenean in tortor imperdiet, rutrum nunc ac, sollicitudin lectus. Cras finibus
+            tempus magna eget egestas. Nam libero metus, tincidunt eu sagittis quis, vehicula ut orci. Fusce accumsan
+            lorem eros, non tincidunt quam fermentum nec.
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Suspendisse aliquet est arcu, sit amet consectetur ante hendrerit ut. Praesent vulputate egestas interdum.
+            Nunc feugiat lacus odio, mollis sodales ipsum egestas eu. Donec nec libero porttitor, pharetra lacus sed,
+            congue ipsum. Ut condimentum gravida sapien quis vehicula. Maecenas volutpat non elit scelerisque molestie.
+            Maecenas fermentum odio enim, at lacinia neque placerat at.
+
+            Suspendisse sodales dui vestibulum, sodales nisl vitae, fringilla nisl. Etiam luctus urna magna, nec
+            ullamcorper magna lobortis sit amet. Morbi accumsan risus eu fringilla viverra. Fusce lacinia hendrerit
+            hendrerit. Aliquam in pharetra odio. Donec ac pretium eros. Proin porta ligula id metus cursus ultricies.
+
+            Curabitur pulvinar molestie lacus sit amet commodo. Fusce iaculis ante ut nibh varius, ac sollicitudin
+            ligula lacinia. Aenean vel luctus mauris. Nunc lectus ex, luctus in hendrerit at, consequat et nunc. Fusce
+            fringilla ex placerat molestie vehicula. Cras luctus vestibulum nunc, et maximus purus suscipit vitae.
+            Phasellus scelerisque commodo libero. Donec urna felis, interdum sed condimentum in, dapibus ac sem. Nullam
+            tincidunt ex et aliquet consectetur. Maecenas malesuada nulla et ante placerat, eget tempus mauris interdum.
+            Nulla nec nisi est. Maecenas non nulla justo.
+
+            Sed velit ipsum, facilisis a augue vitae, tempus fringilla lectus. Morbi vel vulputate eros, a semper odio.
+            Phasellus elit quam, maximus sed ligula vel, egestas placerat dui. Ut sagittis, lectus non iaculis ornare,
+            ipsum ante aliquet diam, maximus maximus magna dolor ut sapien. Proin tincidunt accumsan iaculis. Phasellus
+            pretium, ex eu imperdiet placerat, urna turpis gravida quam, et sodales ligula mauris ac felis. Suspendisse
+            vel lacus eleifend, sollicitudin eros posuere, hendrerit quam. Vivamus sit amet elit vel lorem bibendum
+            molestie. Nullam eleifend congue nisl ac imperdiet. In vel nulla fermentum, dignissim ex in, congue dolor.
+            Maecenas quis malesuada nisl, id facilisis nisl. Pellentesque ante sem, molestie in velit et, porttitor
+            consequat tellus. Nunc blandit, turpis vitae auctor placerat, nulla nisl aliquam ante, a interdum mauris
+            velit in neque.
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum est dolor, nec pharetra mi feugiat non.
+            Etiam suscipit nisi augue, sit amet fringilla risus ornare id. Donec mi risus, tristique vitae felis non,
+            dapibus efficitur nunc. Fusce scelerisque lacus a neque fringilla auctor. Sed ullamcorper nulla nec lorem
+            placerat interdum. Vestibulum magna diam, sodales non luctus accumsan, iaculis vitae elit. Integer tempus
+            posuere elit eget facilisis. Maecenas convallis aliquam viverra. Pellentesque imperdiet elementum lorem, id
+            venenatis est vehicula at. Aenean in tortor imperdiet, rutrum nunc ac, sollicitudin lectus. Cras finibus
+            tempus magna eget egestas. Nam libero metus, tincidunt eu sagittis quis, vehicula ut orci. Fusce accumsan
+            lorem eros, non tincidunt quam fermentum nec.
+
+            Suspendisse aliquet est arcu, sit amet consectetur ante hendrerit ut. Praesent vulputate egestas interdum.
+            Nunc feugiat lacus odio, mollis sodales ipsum egestas eu. Donec nec libero porttitor, pharetra lacus sed,
+            congue ipsum. Ut condimentum gravida sapien quis vehicula. Maecenas volutpat non elit scelerisque molestie.
+            Maecenas fermentum odio enim, at lacinia neque placerat at.
+
+            Suspendisse sodales dui vestibulum, sodales nisl vitae, fringilla nisl. Etiam luctus urna magna, nec
+            ullamcorper magna lobortis sit amet. Morbi accumsan risus eu fringilla viverra. Fusce lacinia hendrerit
+            hendrerit. Aliquam in pharetra odio. Donec ac pretium eros. Proin porta ligula id metus cursus ultricies.
+
+            Curabitur pulvinar molestie lacus sit amet commodo. Fusce iaculis ante ut nibh varius, ac sollicitudin
+            ligula lacinia. Aenean vel luctus mauris. Nunc lectus ex, luctus in hendrerit at, consequat et nunc. Fusce
+            fringilla ex placerat molestie vehicula. Cras luctus vestibulum nunc, et maximus purus suscipit vitae.
+            Phasellus scelerisque commodo libero. Donec urna felis, interdum sed condimentum in, dapibus ac sem. Nullam
+            tincidunt ex et aliquet consectetur. Maecenas malesuada nulla et ante placerat, eget tempus mauris interdum.
+            Nulla nec nisi est. Maecenas non nulla justo.
+
+            Sed velit ipsum, facilisis a augue vitae, tempus fringilla lectus. Morbi vel vulputate eros, a semper odio.
+            Phasellus elit quam, maximus sed ligula vel, egestas placerat dui. Ut sagittis, lectus non iaculis ornare,
+            ipsum ante aliquet diam, maximus maximus magna dolor ut sapien. Proin tincidunt accumsan iaculis. Phasellus
+            pretium, ex eu imperdiet placerat, urna turpis gravida quam, et sodales ligula mauris ac felis. Suspendisse
+            vel lacus eleifend, sollicitudin eros posuere, hendrerit quam. Vivamus sit amet elit vel lorem bibendum
+            molestie. Nullam eleifend congue nisl ac imperdiet. In vel nulla fermentum, dignissim ex in, congue dolor.
+            Maecenas quis malesuada nisl, id facilisis nisl. Pellentesque ante sem, molestie in velit et, porttitor
+            consequat tellus. Nunc blandit, turpis vitae auctor placerat, nulla nisl aliquam ante, a interdum mauris
+            velit in neque.
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
