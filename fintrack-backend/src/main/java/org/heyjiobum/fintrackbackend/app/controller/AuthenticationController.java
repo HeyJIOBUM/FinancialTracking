@@ -17,25 +17,13 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public void register(@RequestBody MyUser myUser, HttpServletResponse response) {
-        boolean isUserRegistered = authenticationService.tryToRegister(myUser);
-
-        if (isUserRegistered){
-            cookieAuthenticationService.setTokenInCookie(response, myUser);
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-        else
-            response.setStatus(HttpServletResponse.SC_CONFLICT);
+        authenticationService.tryToRegister(myUser);
+        cookieAuthenticationService.setTokenInCookie(response, myUser);
     }
 
     @PostMapping("/login")
     public void login(@RequestBody MyUser myUser, HttpServletResponse response) {
-        boolean isUserLoggedIn = authenticationService.tryToLogin(myUser);
-
-        if (isUserLoggedIn){
-            cookieAuthenticationService.setTokenInCookie(response, myUser);
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-        else
-            response.setStatus(HttpServletResponse.SC_CONFLICT);
+        authenticationService.tryToLogin(myUser);
+        cookieAuthenticationService.setTokenInCookie(response, myUser);
     }
 }
