@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.heyjiobum.fintrackbackend.app.entity.MyUser;
 import org.heyjiobum.fintrackbackend.app.service.AuthenticationService;
@@ -16,13 +17,13 @@ public class AuthenticationController {
     private CookieAuthenticationService cookieAuthenticationService;
 
     @PostMapping("/register")
-    public void register(@RequestBody MyUser myUser, HttpServletResponse response) {
+    public void register(@Valid @RequestBody MyUser myUser, HttpServletResponse response) {
         authenticationService.tryToRegister(myUser);
         cookieAuthenticationService.setTokenInCookie(response, myUser);
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody MyUser myUser, HttpServletResponse response) {
+    public void login(@Valid @RequestBody MyUser myUser, HttpServletResponse response) {
         authenticationService.tryToLogin(myUser);
         cookieAuthenticationService.setTokenInCookie(response, myUser);
     }
