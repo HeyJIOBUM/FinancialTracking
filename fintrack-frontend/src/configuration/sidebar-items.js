@@ -1,4 +1,4 @@
-import { Home, Settings, User, Wallet, TrendingDown, TrendingUp} from 'lucide-react';
+import { Home, Settings, User, Wallet, TrendingDown, TrendingUp, NotebookText} from 'lucide-react';
 
 export const SidebarItems = () => {
     return [
@@ -14,6 +14,13 @@ export const SidebarItems = () => {
             href: '/me',
             pathMatcher: (path) => path === '/me',
             icon: <User size={20} />,
+            position: 'top',
+        },
+        {
+            name: 'Categories',
+            href: '/me/categories',
+            pathMatcher: (path) => path.startsWith('/me/budgets'),
+            icon: <NotebookText size={20} />,
             position: 'top',
         },
         {
