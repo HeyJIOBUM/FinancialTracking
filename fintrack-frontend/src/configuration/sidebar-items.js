@@ -19,7 +19,7 @@ export const SidebarItems = () => {
         {
             name: 'Categories',
             href: '/me/categories',
-            pathMatcher: (path) => path.startsWith('/me/budgets'),
+            pathMatcher: (path) => path.startsWith('/me/categories'),
             icon: <NotebookText size={20} />,
             position: 'top',
         },
