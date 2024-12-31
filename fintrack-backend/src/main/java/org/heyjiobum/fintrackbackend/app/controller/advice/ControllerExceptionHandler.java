@@ -4,6 +4,7 @@ import org.heyjiobum.fintrackbackend.app.error.ApplicationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -74,4 +75,14 @@ public class ControllerExceptionHandler {
                 HttpStatus.NOT_FOUND
         );
     }
+
+    @ExceptionHandler
+    @ResponseBody
+    public ResponseEntity<?> catchBadCredentialsException(BadCredentialsException e) {
+        return new ResponseEntity<>(
+                new ApplicationError(HttpStatus.BAD_REQUEST.value(),e.getMessage()),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
 }
