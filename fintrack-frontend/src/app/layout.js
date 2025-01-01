@@ -11,12 +11,12 @@ const inter = Inter({
 export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className}`}>
+        <body className={`${inter.className} w-full`}>
         <ReduxProvider>
             <Header/>
             <div className={"flex"}>
                 <Sidebar/>
-                <main className={"ml-[200px]"}>
+                <main className={"ml-[200px] size-full"}>
                     <div className={"p-4"}>
                         {children}
                     </div>
