@@ -2,12 +2,12 @@
 
 import {useGetExpensesQuery} from "@/configuration/api/expenses-api";
 import Loading from "@/components/loading";
-import ExpenseCard from "@/components/cards/expense-card";
+import ExpenseCard from "@/components/cards/money-operation-card/expense-card";
 import DataHeader from "@/components/data-header";
 import React, {useState} from "react";
 import {DataViewMode} from "@/types/data-view-mode";
 import {OperationType} from "@/types/operation-type";
-import ExpenseEditModal from "@/components/edit-modals/expense-edit-modal";
+import ExpenseEditModal from "@/components/edit-modals/money-operation-edit-modal/expense-edit-modal";
 import AddElementButton from "@/configuration/action-buttons/add-element-button";
 
 export default function ExpensesPage() {
