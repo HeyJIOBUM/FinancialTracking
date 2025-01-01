@@ -19,7 +19,7 @@ export const budgetsApi = applicationApi.injectEndpoints({
                 body: budget,
             }),
         }),
-        deleteBudget: build.query({
+        deleteBudget: build.mutation({
             query: ({id}) => ({
                 url: `/me/budgets/${id}`,
                 method: 'DELETE',
@@ -32,5 +32,5 @@ export const {
     useGetBudgetsQuery,
     useAddBudgetMutation,
     useUpdateBudgetMutation,
-    useDeleteBudgetQuery
+    useDeleteBudgetMutation
 } = budgetsApi

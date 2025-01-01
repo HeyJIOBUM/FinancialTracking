@@ -19,7 +19,7 @@ export const expensesApi = applicationApi.injectEndpoints({
                 body: expense,
             }),
         }),
-        deleteExpense: build.query({
+        deleteExpense: build.mutation({
             query: ({id}) => ({
                 url: `/me/expenses/${id}`,
                 method: 'DELETE',
@@ -32,5 +32,5 @@ export const {
     useGetExpensesQuery,
     useAddExpenseMutation,
     useUpdateExpenseMutation,
-    useDeleteExpenseQuery
+    useDeleteExpenseMutation
 } = expensesApi

@@ -29,7 +29,7 @@ export const categoriesApi = applicationApi.injectEndpoints({
                 body: category,
             }),
         }),
-        deleteCategory: build.query({
+        deleteCategory: build.mutation({
             query: ({id}) => ({
                 url: `/me/categories/${id}`,
                 method: 'DELETE',
@@ -44,5 +44,5 @@ export const {
     useAddCategoryMutation,
     useAddCategoriesMutation,
     useUpdateCategoryMutation,
-    useDeleteCategoryQuery
+    useDeleteCategoryMutation
 } = categoriesApi
