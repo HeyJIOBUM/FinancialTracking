@@ -86,7 +86,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+                                className="mt-1 w-full rounded-md border border-gray-300 p-2"
                                 placeholder="Enter category name"
                                 required
                             />
@@ -94,11 +94,11 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
 
                         {/* Operation Type Select */}
                         <div className="mb-1">
-                            <label className="block text-sm font-medium text-gray-700">Operation Type</label>
+                            <label className="text-sm font-medium text-gray-700">Operation Type</label>
                             <select
                                 value={operationType}
                                 onChange={(e) => setOperationType(e.target.value)}
-                                className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+                                className="mt-1 w-full rounded-md border border-gray-300 p-2"
                             >
                                 <option value="Expense">Expense</option>
                                 <option value="Income">Income</option>
