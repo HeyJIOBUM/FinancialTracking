@@ -1,14 +1,11 @@
-"use client"
-
-import React, {useState} from 'react';
 import EditElementButton from "@/configuration/action-buttons/edit-element-button";
 import DeleteElementButton from "@/configuration/action-buttons/delete-element-button";
-import ExpenseEditModal from "@/components/edit-modals/expense-edit-modal";
-import {useDeleteExpenseMutation} from "@/configuration/api/expenses-api";
+import {useState} from "react";
+import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
 
-export default function ExpenseCard({ expense }) {
-    const [ deleteExpense, deleteMutationResult ] = useDeleteExpenseMutation();
-    const { id, category, amount, date, description } = expense;
+export default function MoneyOperationCard({ moneyOperation, operationType, useDeleteOperationMutation, useUpdateOperationsMutation, useAddOperationsMutation }) {
+    const [ deleteOperation, deleteOperationResult ] = useDeleteOperationMutation();
+    const { id, category, amount, date, description } = moneyOperation;
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleModalOpenToggle = () => {
@@ -16,14 +13,14 @@ export default function ExpenseCard({ expense }) {
     }
 
     const handleExpenseDelete = () => {
-        deleteExpense({id: id})
+        deleteOperation({id: id})
     }
 
     return (
         <>
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md hover:scale-[1.01]">
                 <div className="text-xl font-semibold text-gray-800">
-                    Expense: {category.name}, {amount.toFixed(2)}Br
+                    {operationType}: {category.name}, {amount.toFixed(2)}Br
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
                     Category: <span className="font-medium">{category.name}</span>
@@ -47,12 +44,15 @@ export default function ExpenseCard({ expense }) {
                 </div>
             </div>
 
-            <ExpenseEditModal
+            <MoneyOperationEditModal
                 isOpen={isModalOpen}
                 onClose={handleModalOpenToggle}
                 onSave={handleModalOpenToggle}
                 isEditing={true}
-                expense={expense}
+                moneyOperation={moneyOperation}
+                operationType={operationType}
+                useUpdateOperationsMutation={useUpdateOperationsMutation}
+                useAddOperationsMutation={useAddOperationsMutation}
             />
         </>
     );

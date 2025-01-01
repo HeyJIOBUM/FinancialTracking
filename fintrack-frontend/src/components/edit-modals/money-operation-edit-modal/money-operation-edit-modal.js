@@ -2,27 +2,34 @@
 
 import {CircleX} from "lucide-react";
 import React, {useEffect, useState} from "react";
-import {useAddExpenseMutation, useUpdateExpenseMutation} from "@/configuration/api/expenses-api";
 import {useGetCategoriesQuery} from "@/configuration/api/categories-api";
-import {OperationType} from "@/types/operation-type";
 
-export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, expense }) {
-    const [ updateExpense, updateMutationResult ] = useUpdateExpenseMutation();
-    const [ addExpense, addMutationResult ] = useAddExpenseMutation();
+export default function MoneyOperationEditModal({
+                                                    isOpen,
+                                                    onClose,
+                                                    onSave,
+                                                    isEditing,
+                                                    moneyOperation,
+                                                    operationType,
+                                                    useUpdateOperationsMutation,
+                                                    useAddOperationsMutation,
+                                                }) {
+    const [updateMoneyOperation, updateMutationResult] = useUpdateOperationsMutation();
+    const [addMoneyOperation, addMutationResult] = useAddOperationsMutation();
 
     const [errorMessage, setErrorMessage] = useState(null);
 
     const initialFormData = {
-        category: isEditing ? expense.category.id : -1,
-        amount: isEditing ? expense.amount : 0.00,
-        date: isEditing ? new Date(expense.date).toJSON().slice(0, 10) : new Date().toJSON().slice(0, 10),
-        description: isEditing ? expense.description : ""
+        category: isEditing ? moneyOperation.category.id : -1,
+        amount: isEditing ? moneyOperation.amount : 10.00,
+        date: isEditing ? new Date(moneyOperation.date).toJSON().slice(0, 10) : new Date().toJSON().slice(0, 10),
+        description: isEditing ? moneyOperation.description : ""
     };
 
     const [formData, setFormData] = useState(initialFormData);
 
     const handleFormChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData(prevData => ({
             ...prevData,
             [name]: value
@@ -39,10 +46,11 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
 
     const handleModalClose = () => {
         setFormData(initialFormData);
+        console.log(initialFormData)
         onClose();
     };
 
-    const { data: categories, error: categoriesError, isLoading: isCategoriesLoading } = useGetCategoriesQuery();
+    const {data: categories, error: categoriesError, isLoading: isCategoriesLoading} = useGetCategoriesQuery();
 
     if (isCategoriesLoading) {
         return <></>;
@@ -52,9 +60,9 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
         throw new Error(categoriesError.error);
     }
 
-    const filteredCategories = categories.filter(category => category.operationType === OperationType.EXPENSE);
+    const filteredCategories = categories.filter(category => category.operationType === operationType);
 
-    if (formData.category === -1) {
+    if (formData.category === -1 && filteredCategories.length > 0) {
         formData.category = filteredCategories[0].id;
     }
 
@@ -72,7 +80,7 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
         }));
 
         if (isEditing) {
-            updateExpense({id: expense.id, expense: formData})
+            updateMoneyOperation({id: moneyOperation.id, [operationType.toLowerCase()]: formData})
                 .unwrap()
                 .then(() => {
                     clearErrorMessage()
@@ -81,9 +89,8 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
                 .catch((err) => {
                     setErrorMessage(err.error);
                 });
-        }
-        else {
-            addExpense({expense: formData})
+        } else {
+            addMoneyOperation({[operationType.toLowerCase()]: formData})
                 .unwrap()
                 .then(() => {
                     clearErrorMessage()
@@ -105,17 +112,17 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
                         aria-label="Close"
                         className="absolute right-2 top-[13px]"
                     >
-                        <CircleX strokeWidth={1} />
+                        <CircleX strokeWidth={1}/>
                     </button>
 
                     <form onSubmit={handleSubmit}>
                         <h2 className="mb-4 text-lg font-semibold">
-                            {isEditing ? "Edit Expense" : "Create Expense"}
+                            {isEditing ? `Edit ${operationType}` : `Create ${operationType}`}
                         </h2>
 
                         {/* Category select */}
                         <div className="mb-4">
-                            <label className="text-sm font-medium text-gray-700">Expense category</label>
+                            <label className="text-sm font-medium text-gray-700">{operationType} category</label>
                             <select
                                 name="category"
                                 value={formData.category}
@@ -130,7 +137,7 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
 
                         {/*Amount input*/}
                         <div className="mb-4">
-                            <div className="text-sm font-medium text-gray-700">Expense amount</div>
+                            <div className="text-sm font-medium text-gray-700">{operationType} amount</div>
                             <input
                                 type="number"
                                 step='0.01'
@@ -146,7 +153,7 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
 
                         {/*Date input*/}
                         <div className="mb-4">
-                            <div className="text-sm font-medium text-gray-700">Expense date</div>
+                            <div className="text-sm font-medium text-gray-700">{operationType} date</div>
                             <input
                                 type="date"
                                 name="date"
@@ -159,7 +166,7 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
 
                         {/*Description input*/}
                         <div className="mb-1">
-                            <div className="text-sm font-medium text-gray-700">Expense description</div>
+                            <div className="text-sm font-medium text-gray-700">{operationType} description</div>
                             <input
                                 type="text"
                                 name="description"
