@@ -12,5 +12,6 @@ export const applicationApi = createApi({
         },
         credentials: "include"
     }),
+    tagTypes: ["Budget", "Category", "Expense", "Income"],
     endpoints: _ => ({}),
 });

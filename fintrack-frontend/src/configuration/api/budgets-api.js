@@ -4,6 +4,10 @@ export const budgetsApi = applicationApi.injectEndpoints({
     endpoints: (build) => ({
         getBudgets: build.query({
             query: () => '/me/budgets',
+            providesTags: (result, error, arg) =>
+                result
+                    ? [...result.map(({ id }) => ({ type: 'Budget', id })), 'Budget']
+                    : ['Budget'],
         }),
         addBudget: build.mutation({
             query: ({budget}) => ({
@@ -11,6 +15,7 @@ export const budgetsApi = applicationApi.injectEndpoints({
                 method: 'POST',
                 body: budget,
             }),
+            invalidatesTags: ['Budget'],
         }),
         updateBudget: build.mutation({
             query: ({id, budget}) => ({
@@ -18,12 +23,14 @@ export const budgetsApi = applicationApi.injectEndpoints({
                 method: 'PUT',
                 body: budget,
             }),
+            invalidatesTags: (result, error, arg) => [{ type: 'Budget', id: arg.id }],
         }),
         deleteBudget: build.mutation({
             query: ({id}) => ({
                 url: `/me/budgets/${id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['Budget'],
         }),
     }),
 })

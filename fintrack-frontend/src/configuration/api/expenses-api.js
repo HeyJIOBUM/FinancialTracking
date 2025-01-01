@@ -4,6 +4,10 @@ export const expensesApi = applicationApi.injectEndpoints({
     endpoints: (build) => ({
         getExpenses: build.query({
             query: () => '/me/expenses',
+            providesTags: (result, error, arg) =>
+                result
+                    ? [...result.map(({ id }) => ({ type: 'Expense', id })), 'Expense']
+                    : ['Expense'],
         }),
         addExpense: build.mutation({
             query: ({expense}) => ({
@@ -11,6 +15,7 @@ export const expensesApi = applicationApi.injectEndpoints({
                 method: 'POST',
                 body: expense,
             }),
+            invalidatesTags: ['Expense', 'Budget'],
         }),
         updateExpense: build.mutation({
             query: ({id, expense}) => ({
@@ -18,12 +23,14 @@ export const expensesApi = applicationApi.injectEndpoints({
                 method: 'PUT',
                 body: expense,
             }),
+            invalidatesTags: (result, error, arg) => [{ type: 'Expense', id: arg.id }, 'Budget'],
         }),
         deleteExpense: build.mutation({
             query: ({id}) => ({
                 url: `/me/expenses/${id}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['Expense', 'Budget'],
         }),
     }),
 })
