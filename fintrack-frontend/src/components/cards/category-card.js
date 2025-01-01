@@ -4,8 +4,10 @@ import React, {useState} from 'react';
 import EditElementButton from "@/configuration/action-buttons/edit-element-button";
 import DeleteElementButton from "@/configuration/action-buttons/delete-element-button";
 import CategoryEditModal from "@/components/edit-modals/category-edit-modal";
+import {useDeleteCategoryMutation} from "@/configuration/api/categories-api";
 
 export default function CategoryCard({ category }) {
+    const [ deleteCategory, deleteMutationResult ] = useDeleteCategoryMutation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { id, operationType, name } = category;
 
@@ -13,17 +15,8 @@ export default function CategoryCard({ category }) {
         setIsModalOpen(!isModalOpen);
     }
 
-    const handleCategoryStartEditing = () => {
-        setIsModalOpen(true);
-    }
-
     const handleCategoryDelete = () => {
-        
-    }
-    
-
-    const handleCategorySave = () => {
-        setIsModalOpen(!isModalOpen);
+        deleteCategory({id: id})
     }
 
     return (
@@ -36,7 +29,7 @@ export default function CategoryCard({ category }) {
                     Operation type: <span className="font-medium">{operationType}</span>
                 </div>
                 <div className="mt-4 flex gap-6">
-                    <EditElementButton onClick={handleCategoryStartEditing}/>
+                    <EditElementButton onClick={handleModalOpenToggle}/>
                     <DeleteElementButton onClick={handleCategoryDelete}/>
                 </div>
             </div>
@@ -44,7 +37,7 @@ export default function CategoryCard({ category }) {
             <CategoryEditModal
                 isOpen={isModalOpen}
                 onClose={handleModalOpenToggle}
-                onSave={handleCategorySave}
+                onSave={handleModalOpenToggle}
                 isEditing={true}
                 category={category}
             />
