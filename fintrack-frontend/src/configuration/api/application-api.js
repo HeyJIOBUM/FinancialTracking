@@ -10,6 +10,7 @@ export const applicationApi = createApi({
             headers.set('Content-Type', 'application/json;charset=UTF-8');
             return headers;
         },
+        credentials: "include"
     }),
     endpoints: _ => ({}),
 });
