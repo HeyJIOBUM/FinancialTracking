@@ -44,6 +44,7 @@ export const categoriesApi = applicationApi.injectEndpoints({
             invalidatesTags: ['Category'],
         }),
     }),
+    overrideExisting: false,
 })
 
 export const {

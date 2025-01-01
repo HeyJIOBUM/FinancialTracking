@@ -33,6 +33,7 @@ export const budgetsApi = applicationApi.injectEndpoints({
             invalidatesTags: ['Budget'],
         }),
     }),
+    overrideExisting: false,
 })
 
 export const {

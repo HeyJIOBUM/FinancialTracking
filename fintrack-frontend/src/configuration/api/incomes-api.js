@@ -33,6 +33,7 @@ export const incomesApi = applicationApi.injectEndpoints({
             invalidatesTags: ['Income'],
         }),
     }),
+    overrideExisting: false,
 })
 
 export const {
