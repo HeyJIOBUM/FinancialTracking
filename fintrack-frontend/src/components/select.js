@@ -10,19 +10,21 @@ export default function Select({ options, selectedOptions, setSelectedOptions, i
 
     const handleOptionToggle = (option) => {
         if (isMultiSelect) {
-            setSelectedOptions(prev => {
-                if (prev.includes(option)) {
-                    return prev.filter(o => o !== option);
-                } else {
-                    return [...prev, option];
-                }
-            });
+            let newSelectedOptions;
+            
+            if (selectedOptions.includes(option))
+                newSelectedOptions = selectedOptions.filter(o => o !== option);
+            else
+                newSelectedOptions = [...selectedOptions, option];
+
+            setSelectedOptions(newSelectedOptions);
         } else {
             setSelectedOptions([option]);
             setIsOpen(false);
         }
     };
 
+    // Close dropdown when mouse click outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
