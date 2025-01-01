@@ -20,7 +20,9 @@ export default function Header() {
     }
 
     const handleLogOut = () => {
-        deleteTokenCookie().then(() => dispatch(logOut()));
+        deleteTokenCookie();
+        dispatch(logOut());
+        window.location.reload();
     }
 
     return (
