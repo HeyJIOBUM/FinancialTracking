@@ -27,8 +27,8 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store =
-    configureStore({
+export const makeStore = () => {
+    return  configureStore({
         reducer: persistedReducer,
         middleware: getDefaultMiddleware =>
             getDefaultMiddleware({
@@ -37,5 +37,4 @@ export const store =
                 },
             }).concat(applicationApi.middleware),
     });
-
-export const persistor = persistStore(store);
+}
