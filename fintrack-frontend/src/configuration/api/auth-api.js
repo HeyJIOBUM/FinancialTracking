@@ -1,6 +1,6 @@
 import {base_api_url} from "@/configuration/api/application-api";
 
-async function authenticateUser(endpoint, username, password) {
+async function sendUserDataToServer(endpoint, objToSend) {
     let response = null;
     try {
         response = await fetch(base_api_url + endpoint, {
@@ -9,7 +9,7 @@ async function authenticateUser(endpoint, username, password) {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify({username, password}),
+            body: JSON.stringify(objToSend),
         });
     }
     catch (err) {
@@ -26,10 +26,14 @@ async function authenticateUser(endpoint, username, password) {
     }
 }
 
-export async function register({username, password}) {
-    return await authenticateUser('/register', username, password);
+export async function register(authObj) {
+    return await sendUserDataToServer('/register', authObj);
 }
 
-export async function signIn({username, password}) {
-    return await authenticateUser('/login', username, password);
+export async function signIn(authObj) {
+    return await sendUserDataToServer('/login', authObj);
+}
+
+export async function changePassword(passwordChangeObj) {
+    return await sendUserDataToServer('/me/change_password', passwordChangeObj);
 }
