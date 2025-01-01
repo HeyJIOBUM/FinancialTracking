@@ -3,14 +3,14 @@
 import {SidebarItems} from "@/configuration/sidebar-items";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import { twMerge } from "tailwind-merge"
+import {twMerge} from "tailwind-merge"
 
 export default function Sidebar() {
     const currentPath = usePathname();
     const navigationItems = SidebarItems();
 
     return (
-        <div className={"fixed h-[calc(calc(98%)-65px)] w-[200px] border-r"}>
+        <div className={"fixed h-full w-[200px] border-r pb-[70px]"}>
             <nav className="flex size-full columns-1 flex-col justify-between overflow-x-hidden break-words p-4">
                 {/*TopItems*/}
                 <div className="flex flex-col space-y-2">
