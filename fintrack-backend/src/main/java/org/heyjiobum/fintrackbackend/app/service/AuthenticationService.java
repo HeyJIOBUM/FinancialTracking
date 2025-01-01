@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.service;
 
 import lombok.AllArgsConstructor;
+import org.heyjiobum.fintrackbackend.app.configuration.DefaultCategoriesSupplier;
 import org.heyjiobum.fintrackbackend.app.entity.MyUser;
 import org.heyjiobum.fintrackbackend.app.repository.MyUserRepository;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final MyUserRepository myUserRepository;
+    private final DefaultCategoriesSupplier defaultCategoriesSupplier;
 
     public void tryToRegister(MyUser myUser) {
         Optional<MyUser> userInDb = myUserRepository.findByUsername(myUser.getUsername());
@@ -22,6 +24,7 @@ public class AuthenticationService {
 
 
         MyUser savedUser = new MyUser(myUser.getUsername(), passwordEncoder.encode(myUser.getPassword()));
+        savedUser.setCategories(defaultCategoriesSupplier.get());
         myUserRepository.save(savedUser);
     }
 
