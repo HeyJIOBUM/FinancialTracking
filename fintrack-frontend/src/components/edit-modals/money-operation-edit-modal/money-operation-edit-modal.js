@@ -46,7 +46,6 @@ export default function MoneyOperationEditModal({
 
     const handleModalClose = () => {
         setFormData(initialFormData);
-        console.log(initialFormData)
         onClose();
     };
 
