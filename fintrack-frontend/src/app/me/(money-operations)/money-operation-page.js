@@ -6,6 +6,7 @@ import AddElementButton from "@/configuration/action-buttons/add-element-button"
 import MoneyOperationCard from "@/components/cards/money-operation-card/money-operation-card";
 import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
 import MoneyOperationGraphic from "@/components/graphic/money-operation-graphic";
+import {formatDateToISO, subtractMonthsFromDate} from "@/utils/date-utils";
 
 export default function MoneyOperationPage({
                                                operationType,
@@ -19,8 +20,8 @@ export default function MoneyOperationPage({
 
     const dataHeaderInitialState = {
         chosenCategories: [],
-        fromDate: "2020-01-01",
-        toDate: new Date().toJSON().slice(0, 10),
+        fromDate: formatDateToISO(subtractMonthsFromDate(new Date(), 1)),
+        toDate: formatDateToISO(new Date()),
         dataViewMode: DataViewMode.LIST
     };
 

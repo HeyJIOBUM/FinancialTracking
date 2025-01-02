@@ -11,6 +11,7 @@ import {OperationType} from "@/types/operation-type";
 import BudgetGraphic from "@/components/graphic/budget-graphic";
 import AddElementButton from "@/configuration/action-buttons/add-element-button";
 import BudgetEditModal from "@/components/edit-modals/budget-edit-modal";
+import {addMonthsToDate, formatDateToISO, subtractMonthsFromDate} from "@/utils/date-utils";
 
 export default function BudgetsPage() {
     const {data: budgets, error: budgetsError, isLoading: isBudgetsLoading} = useGetBudgetsQuery();
@@ -18,8 +19,8 @@ export default function BudgetsPage() {
 
     const dataHeaderInitialState = {
         chosenCategories: [],
-        fromDate: "2020-01-01",
-        toDate: new Date().toJSON().slice(0, 10),
+        fromDate: formatDateToISO(subtractMonthsFromDate(new Date(), 1)),
+        toDate: formatDateToISO(addMonthsToDate(new Date(), 1)),
         dataViewMode: DataViewMode.LIST
     };
 
