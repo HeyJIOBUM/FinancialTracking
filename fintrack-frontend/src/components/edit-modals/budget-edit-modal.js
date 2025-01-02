@@ -26,7 +26,7 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
     const initialFormData = {
         title: isEditing ? budget.title : `New budget`,
         categories: isEditing ? convertCategoriesToSelectOptions(budget.categories) : [],
-        amount: isEditing ? budget.amount : 10.00,
+        amount: isEditing ? budget.amount : 100.00,
         fromDate: isEditing ? formatDateToISO(budget.fromDate) : formatDateToISO(new Date()),
         toDate: isEditing ? formatDateToISO(budget.toDate) : formatDateToISO(new Date()),
         description: isEditing ? budget.description : ""
