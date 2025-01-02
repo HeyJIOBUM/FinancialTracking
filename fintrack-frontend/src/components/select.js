@@ -41,7 +41,7 @@ export default function Select({ options, selectedOptionIds, setSelectedOptions,
     }, [selectRef]);
 
     return (
-        <div className="relative w-full max-w-[240px]" ref={selectRef}>
+        <div className="relative w-full max-w-[250px]" ref={selectRef}>
             <button
                 onClick={toggleDropdown}
                 className="w-full rounded border border-gray-300 bg-black p-2 text-center text-white"
