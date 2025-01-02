@@ -77,6 +77,11 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (formData.fromDate > formData.toDate) {
+            setErrorMessage("From date can not be after To date");
+            return;
+        }
+
         const budgetToSend = {
             ...formData,
             categories: extractCategoryIdsFromSelectOptions(formData.categories),
