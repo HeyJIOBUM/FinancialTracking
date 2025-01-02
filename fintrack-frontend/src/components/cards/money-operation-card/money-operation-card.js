@@ -26,13 +26,13 @@ export default function MoneyOperationCard({
         <>
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md hover:scale-[1.01]">
                 <div className="text-xl font-semibold text-gray-800">
-                    {operationType}: {category.name}, {amount.toFixed(2)}Br
+                    {category.name}, {amount.toFixed(2)} Br
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
                     Category: <span className="font-medium">{category.name}</span>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
-                    Amount: <span className="font-medium">{amount.toFixed(2)}Br</span>
+                    Amount: <span className="font-medium">{amount.toFixed(2)} Br</span>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
                     Date: <span className="font-medium">{new Date(date).toJSON().slice(0, 10)}</span>
