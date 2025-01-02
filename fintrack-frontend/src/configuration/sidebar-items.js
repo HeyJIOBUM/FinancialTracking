@@ -1,4 +1,5 @@
-import { Home, Settings, User, Wallet, TrendingDown, TrendingUp, NotebookText} from 'lucide-react';
+import {Home, NotebookText, Settings, TrendingDown, TrendingUp, Wallet} from 'lucide-react';
+import Image from "next/image";
 
 export const SidebarItems = () => {
     return [
@@ -10,10 +11,10 @@ export const SidebarItems = () => {
             position: 'top',
         },
         {
-            name: 'Profile',
+            name: 'Money flow',
             href: '/me',
             pathMatcher: (path) => path === '/me',
-            icon: <User size={20} />,
+            icon: <Image alt={""} width={20} height={20} src={'/money-svgrepo-com.svg'}/>,
             position: 'top',
         },
         {
