@@ -73,6 +73,13 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
                 </div>
 
                 <div className={"mt-2"}>
+                    Overall {operationType.toLowerCase()}:
+                    <div>
+                        {totalAmount} Br
+                    </div>
+                </div>
+
+                <div className={"mt-2"}>
                     Average daily {operationType.toLowerCase()}:
                     <div>
                         {averageMoneyValue} Br
