@@ -2,6 +2,7 @@ import EditElementButton from "@/configuration/action-buttons/edit-element-butto
 import DeleteElementButton from "@/configuration/action-buttons/delete-element-button";
 import {useState} from "react";
 import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
+import {formatDateToLocale} from "@/utils/date-utils";
 
 export default function MoneyOperationCard({
                                                moneyOperation,
@@ -22,6 +23,8 @@ export default function MoneyOperationCard({
         deleteOperation({id: id})
     }
 
+    console.log(new Date(moneyOperation.date))
+
     return (
         <>
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md hover:scale-[1.01]">
@@ -35,7 +38,7 @@ export default function MoneyOperationCard({
                     Amount: <span className="font-medium">{amount.toFixed(2)} Br</span>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
-                    Date: <span className="font-medium">{new Date(date).toJSON().slice(0, 10)}</span>
+                    Date: <span className="font-medium">{formatDateToLocale(date)}</span>
                 </div>
                 {
                     description?.length !== 0 && (

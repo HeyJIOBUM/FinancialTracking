@@ -6,6 +6,7 @@ import Select from 'react-select';
 import {OperationType} from "@/types/operation-type";
 import {useGetCategoriesQuery} from "@/configuration/api/categories-api";
 import {useAddBudgetMutation, useUpdateBudgetMutation} from "@/configuration/api/budgets-api";
+import {formatDateToISO} from "@/utils/date-utils";
 
 
 export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, budget }) {
@@ -26,8 +27,8 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
         title: isEditing ? budget.title : `New budget`,
         categories: isEditing ? convertCategoriesToSelectOptions(budget.categories) : [],
         amount: isEditing ? budget.amount : 10.00,
-        fromDate: isEditing ? new Date(budget.fromDate).toJSON().slice(0, 10) : new Date().toJSON().slice(0, 10),
-        toDate: isEditing ? new Date(budget.toDate).toJSON().slice(0, 10) : new Date().toJSON().slice(0, 10),
+        fromDate: isEditing ? formatDateToISO(budget.fromDate) : formatDateToISO(new Date()),
+        toDate: isEditing ? formatDateToISO(budget.toDate) : formatDateToISO(new Date()),
         description: isEditing ? budget.description : ""
     };
 

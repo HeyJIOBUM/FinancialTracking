@@ -6,6 +6,7 @@ import DeleteElementButton from "@/configuration/action-buttons/delete-element-b
 import BudgetEditModal from "@/components/edit-modals/budget-edit-modal";
 import {useDeleteBudgetMutation} from "@/configuration/api/budgets-api";
 import {toast} from "react-toastify";
+import {formatDateToLocale} from "@/utils/date-utils";
 
 export default function BudgetCard({ enrichedBudget }) {
     const [deleteBudget, deleteMutationResult] = useDeleteBudgetMutation();
@@ -64,10 +65,10 @@ export default function BudgetCard({ enrichedBudget }) {
                 </div>
 
                 <div className="mt-2 text-sm text-gray-600">
-                    From: <span className="font-medium">{new Date(fromDate).toJSON().slice(0, 10)}</span>
+                    From: <span className="font-medium">{formatDateToLocale(fromDate)}</span>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
-                    To: <span className="font-medium">{new Date(toDate).toJSON().slice(0, 10)}</span>
+                    To: <span className="font-medium">{formatDateToLocale(toDate)}</span>
                 </div>
                 {
                     description?.length !== 0 && (

@@ -3,6 +3,7 @@
 import {CircleX} from "lucide-react";
 import React, {useEffect, useState} from "react";
 import {useGetCategoriesQuery} from "@/configuration/api/categories-api";
+import {formatDateToISO} from "@/utils/date-utils";
 
 export default function MoneyOperationEditModal({
                                                     isOpen,
@@ -22,7 +23,7 @@ export default function MoneyOperationEditModal({
     const initialFormData = {
         category: isEditing ? moneyOperation.category.id : -1,
         amount: isEditing ? moneyOperation.amount : 10.00,
-        date: isEditing ? new Date(moneyOperation.date).toJSON().slice(0, 10) : new Date().toJSON().slice(0, 10),
+        date: isEditing ? formatDateToISO(moneyOperation.date) : formatDateToISO(new Date()),
         description: isEditing ? moneyOperation.description : ""
     };
 
@@ -72,11 +73,6 @@ export default function MoneyOperationEditModal({
             setErrorMessage("Amount must be positive number");
             return;
         }
-
-        setFormData(prevData => ({
-            ...prevData,
-            date: new Date(prevData.date).toJSON().slice(0, 10),
-        }));
 
         if (isEditing) {
             updateMoneyOperation({id: moneyOperation.id, [operationType.toLowerCase()]: formData})
