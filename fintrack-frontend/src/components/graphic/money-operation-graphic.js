@@ -12,13 +12,6 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
         return `${(percent * 100).toFixed(0)}%`;
     };
 
-    const sizing = {
-        margin: { right: 5 },
-        width: 200,
-        height: 200,
-        legend: { hidden: true },
-    };
-
     const preparedData = moneyOperations.reduce((acc, op) => {
         const existingCategory = acc.find(item => item.id === op.category.id);
         if (existingCategory) {
