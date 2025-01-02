@@ -5,6 +5,7 @@ import DataHeader from "@/components/data-header";
 import AddElementButton from "@/configuration/action-buttons/add-element-button";
 import MoneyOperationCard from "@/components/cards/money-operation-card/money-operation-card";
 import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
+import MoneyOperationGraphic from "@/components/graphic/money-operation-graphic";
 
 export default function MoneyOperationPage({
                                                operationType,
@@ -59,24 +60,37 @@ export default function MoneyOperationPage({
             />
 
             {/*Operations*/}
-            <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
-                {filteredMoneyOperations.length > 0 ? (
-                    filteredMoneyOperations.map(operation => (
-                        <MoneyOperationCard
-                            key={operation.id}
-                            moneyOperation={operation}
+            {
+                filteredMoneyOperations.length > 0 ? (
+                    dataHeaderState.dataViewMode === DataViewMode.LIST ? (
+                        <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
+                            {
+                                filteredMoneyOperations.map(operation => (
+                                    <MoneyOperationCard
+                                        key={operation.id}
+                                        moneyOperation={operation}
+                                        operationType={operationType}
+                                        useDeleteOperationMutation={useDeleteOperationMutation}
+                                        useUpdateOperationMutation={useUpdateOperationMutation}
+                                        useAddOperationMutation={useAddOperationMutation}
+                                    />
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <MoneyOperationGraphic
                             operationType={operationType}
-                            useDeleteOperationMutation={useDeleteOperationMutation}
-                            useUpdateOperationMutation={useUpdateOperationMutation}
-                            useAddOperationMutation={useAddOperationMutation}
+                            moneyOperations={filteredMoneyOperations}
+                            toDate={toDate}
+                            fromDate={fromDate}
                         />
-                    ))
+                    )
                 ) : (
                     <p>
                         No {operationType.toLowerCase()}s available.
                     </p>
-                )}
-            </div>
+                )
+            }
 
             <AddElementButton onClick={handleModalOpenToggle}/>
 
