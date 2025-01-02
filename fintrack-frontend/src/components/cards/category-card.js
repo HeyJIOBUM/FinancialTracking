@@ -5,6 +5,7 @@ import EditElementButton from "@/configuration/action-buttons/edit-element-butto
 import DeleteElementButton from "@/configuration/action-buttons/delete-element-button";
 import CategoryEditModal from "@/components/edit-modals/category-edit-modal";
 import {useDeleteCategoryMutation} from "@/configuration/api/categories-api";
+import {toast} from "react-toastify";
 
 export default function CategoryCard({ category }) {
     const [ deleteCategory, deleteMutationResult ] = useDeleteCategoryMutation();
@@ -17,6 +18,10 @@ export default function CategoryCard({ category }) {
 
     const handleCategoryDelete = () => {
         deleteCategory({id: id})
+            .unwrap()
+            .catch(() => {
+                toast.error("Cannot delete a category you are using!");
+            })
     }
 
     return (

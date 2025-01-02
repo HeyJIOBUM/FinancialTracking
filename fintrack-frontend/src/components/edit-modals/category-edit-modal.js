@@ -80,7 +80,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                         </h2>
 
                         {/* Category Name Input */}
-                        <div className="mb-4">
+                        <div className="mb-1">
                             <div className="text-sm font-medium text-gray-700">Category Name</div>
                             <input
                                 type="text"
@@ -93,17 +93,21 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                         </div>
 
                         {/* Operation Type Select */}
-                        <div className="mb-1">
-                            <label className="text-sm font-medium text-gray-700">Operation Type</label>
-                            <select
-                                value={operationType}
-                                onChange={(e) => setOperationType(e.target.value)}
-                                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-                            >
-                                <option value="Expense">Expense</option>
-                                <option value="Income">Income</option>
-                            </select>
-                        </div>
+                        {
+                            !isEditing && (
+                                <div className="mb-1 mt-3">
+                                    <label className="text-sm font-medium text-gray-700">Operation Type</label>
+                                    <select
+                                        value={operationType}
+                                        onChange={(e) => setOperationType(e.target.value)}
+                                        className="mt-1 w-full rounded-md border border-gray-300 p-2"
+                                    >
+                                        <option value="Expense">Expense</option>
+                                        <option value="Income">Income</option>
+                                    </select>
+                                </div>
+                            )
+                        }
 
                         {/* Error Message */}
                         {errorMessage && (
@@ -117,7 +121,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                             type="submit"
                             className="mt-4 rounded bg-black px-4 py-2 text-white transition duration-200 hover:bg-gray-800"
                         >
-                            Submit
+                        Submit
                         </button>
                     </form>
                 </div>
