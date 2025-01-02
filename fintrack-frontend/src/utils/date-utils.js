@@ -2,7 +2,7 @@ export const calculateDaysBetween = (startDate, endDate, includeEndDay = true) =
     const start = new Date(startDate);
     const end = new Date(endDate);
     const timeDifference = Math.abs(end - start);
-    let daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    let daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
     if (includeEndDay)
         daysDifference += 1;
     return daysDifference;
@@ -10,11 +10,7 @@ export const calculateDaysBetween = (startDate, endDate, includeEndDay = true) =
 
 export const isDateInRange = (date, fromDate, toDate) => {
     const targetDate = new Date(date);
-
-    console.log(formatDateToISO(targetDate));
-    console.log(formatDateToISO(new Date(fromDate)));
-    console.log(formatDateToISO((new Date(toDate))));
-
+    targetDate.setHours(0, 0, 0, 0);
     return new Date(fromDate) <= targetDate && targetDate <= new Date(toDate);
 };
 
