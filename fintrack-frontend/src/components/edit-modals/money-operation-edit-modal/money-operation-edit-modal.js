@@ -11,11 +11,11 @@ export default function MoneyOperationEditModal({
                                                     isEditing,
                                                     moneyOperation,
                                                     operationType,
-                                                    useUpdateOperationsMutation,
-                                                    useAddOperationsMutation,
+                                                    useUpdateOperationMutation,
+                                                    useAddOperationMutation,
                                                 }) {
-    const [updateMoneyOperation, updateMutationResult] = useUpdateOperationsMutation();
-    const [addMoneyOperation, addMutationResult] = useAddOperationsMutation();
+    const [updateMoneyOperation, updateMutationResult] = useUpdateOperationMutation();
+    const [addMoneyOperation, addMutationResult] = useAddOperationMutation();
 
     const [errorMessage, setErrorMessage] = useState(null);
 

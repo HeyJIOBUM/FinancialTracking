@@ -11,8 +11,8 @@ export default function IncomeCard({ income }) {
             moneyOperation={income}
             operationType={OperationType.INCOME}
             useDeleteOperationMutation={useDeleteIncomeMutation}
-            useUpdateOperationsMutation={useUpdateIncomeMutation}
-            useAddOperationsMutation={useAddIncomeMutation}
+            useUpdateOperationMutation={useUpdateIncomeMutation}
+            useAddOperationMutation={useAddIncomeMutation}
         />
     );
 }

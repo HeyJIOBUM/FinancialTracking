@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import React from 'react';
 import {
     useAddExpenseMutation,
     useDeleteExpenseMutation,
+    useGetExpensesQuery,
     useUpdateExpenseMutation
 } from "@/configuration/api/expenses-api";
-import MoneyOperationCard from "@/components/cards/money-operation-card/money-operation-card";
+import React from "react";
 import {OperationType} from "@/types/operation-type";
+import MoneyOperationPage from "@/app/me/(money-operations)/money-operation-page";
 
-export default function ExpenseCard({ expense }) {
+export default function ExpensesPage() {
     return (
-        <MoneyOperationCard
-            moneyOperation={expense}
+        <MoneyOperationPage
             operationType={OperationType.EXPENSE}
+            useGetOperationsQuery={useGetExpensesQuery}
             useDeleteOperationMutation={useDeleteExpenseMutation}
             useUpdateOperationMutation={useUpdateExpenseMutation}
             useAddOperationMutation={useAddExpenseMutation}
-        />
+      />
     );
 }

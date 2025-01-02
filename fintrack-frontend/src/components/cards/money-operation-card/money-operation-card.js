@@ -3,9 +3,15 @@ import DeleteElementButton from "@/configuration/action-buttons/delete-element-b
 import {useState} from "react";
 import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
 
-export default function MoneyOperationCard({ moneyOperation, operationType, useDeleteOperationMutation, useUpdateOperationsMutation, useAddOperationsMutation }) {
-    const [ deleteOperation, deleteOperationResult ] = useDeleteOperationMutation();
-    const { id, category, amount, date, description } = moneyOperation;
+export default function MoneyOperationCard({
+                                               moneyOperation,
+                                               operationType,
+                                               useDeleteOperationMutation,
+                                               useUpdateOperationMutation,
+                                               useAddOperationMutation
+                                           }) {
+    const [deleteOperation, deleteOperationResult] = useDeleteOperationMutation();
+    const {id, category, amount, date, description} = moneyOperation;
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleModalOpenToggle = () => {
@@ -40,7 +46,7 @@ export default function MoneyOperationCard({ moneyOperation, operationType, useD
                 }
                 <div className="mt-4 flex gap-6">
                     <EditElementButton onClick={handleModalOpenToggle}/>
-                    <DeleteElementButton onClick={handleExpenseDelete} />
+                    <DeleteElementButton onClick={handleExpenseDelete}/>
                 </div>
             </div>
 
@@ -51,8 +57,8 @@ export default function MoneyOperationCard({ moneyOperation, operationType, useD
                 isEditing={true}
                 moneyOperation={moneyOperation}
                 operationType={operationType}
-                useUpdateOperationsMutation={useUpdateOperationsMutation}
-                useAddOperationsMutation={useAddOperationsMutation}
+                useUpdateOperationMutation={useUpdateOperationMutation}
+                useAddOperationMutation={useAddOperationMutation}
             />
         </>
     );

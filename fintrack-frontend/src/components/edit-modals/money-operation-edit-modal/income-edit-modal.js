@@ -14,8 +14,8 @@ export default function IncomeEditModal({ isOpen, onClose, onSave, isEditing, in
             isEditing={isEditing}
             moneyOperation={income}
             operationType={OperationType.INCOME}
-            useUpdateOperationsMutation={useUpdateIncomeMutation}
-            useAddOperationsMutation={useAddIncomeMutation}
+            useUpdateOperationMutation={useUpdateIncomeMutation}
+            useAddOperationMutation={useAddIncomeMutation}
         />
     );
 }

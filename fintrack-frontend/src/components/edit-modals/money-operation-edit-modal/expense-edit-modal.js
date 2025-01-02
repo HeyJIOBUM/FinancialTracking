@@ -14,8 +14,8 @@ export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, e
             isEditing={isEditing}
             moneyOperation={expense}
             operationType={OperationType.EXPENSE}
-            useUpdateOperationsMutation={useUpdateExpenseMutation}
-            useAddOperationsMutation={useAddExpenseMutation}
+            useUpdateOperationMutation={useUpdateExpenseMutation}
+            useAddOperationMutation={useAddExpenseMutation}
         />
     );
 }
