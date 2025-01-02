@@ -30,7 +30,26 @@ export default function BudgetsPage() {
         setIsModalOpen(!isModalOpen);
     }
 
-    function extractExpensesFromBudgets(budgets, expenses) {
+    const filterBudgets = (budgets) => {
+        let { chosenCategories, fromDate, toDate } = dataHeaderState;
+        fromDate = new Date(fromDate);
+        toDate = new Date(toDate);
+
+        return budgets.filter(budget => {
+            const budgetFromDate = new Date(budget.fromDate);
+            const budgetToDate = new Date(budget.toDate);
+
+            const allCategoriesMatch = chosenCategories.length === 0 ||
+                budget.categories.every(category => chosenCategories.includes(category.id));
+
+            return (
+                allCategoriesMatch &&
+                fromDate <= budgetFromDate && budgetFromDate <= toDate
+            );
+        });
+    }
+
+    const extractExpensesFromBudgets = (budgets, expenses) => {
         return budgets.map(budget => {
             const budgetCategoriesIds = budget.categories.map(category => category.id);
             const fromDate = new Date(budget.fromDate);
@@ -44,7 +63,6 @@ export default function BudgetsPage() {
                     expenseDate <= toDate
                 );
             });
-
 
             const totalExpensesAmount = relevantExpenses.reduce((total, expense) => total + expense.amount, 0);
             return {
@@ -65,7 +83,8 @@ export default function BudgetsPage() {
         throw Error(expensesError.error);
     }
 
-    const enrichedBudgets = extractExpensesFromBudgets(budgets, expenses);
+    const filteredBudgets = filterBudgets(budgets)
+    const enrichedBudgets = extractExpensesFromBudgets(filteredBudgets, expenses);
 
     return (
         <div>
@@ -89,14 +108,12 @@ export default function BudgetsPage() {
                     ) : (
                         <BudgetGraphic
                             enrichedBudgets={enrichedBudgets}
-                            toDate={toDate}
-                            fromDate={fromDate}
                         />
                     )
                 ) : (
-                    <p>
+                    <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
                         No budgets available.
-                    </p>
+                    </div>
                 )
             }
 
