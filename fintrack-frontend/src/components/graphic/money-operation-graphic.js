@@ -42,16 +42,16 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
     }, {value: 0});
 
     return (
-        <div className="flex h-[400px] w-full justify-around">
+        <div className="flex h-[400px]">
             <PieChart
-                width={600}
+                width={800}
                 series={[
                     {
                         data : preparedData,
                         arcLabel: getArcLabel,
                         arcLabelMinAngle: 15,
                         arcLabelRadius: '60%',
-                        paddingAngle: 3,
+                        paddingAngle: 1,
                         cornerRadius: 5,
                     }
                 ]}
@@ -80,16 +80,24 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
                 </div>
 
                 <div className={"mt-2"}>
+                    Average daily {operationType.toLowerCase()}:
+                    <div>
+                        {averageMoneyValue} Br
+                    </div>
+                </div>
+
+
+                <div className={"mt-2"}>
                     Min {operationType.toLowerCase()} category:
                     <div>
-                        {minValueCategory.label} {minValueCategory.value}
+                        {minValueCategory.label} {minValueCategory.value} Br
                     </div>
                 </div>
 
                 <div className={"mt-2"}>
                     Max {operationType.toLowerCase()} category:
                     <div>
-                        {maxValueCategory.label} {maxValueCategory.value}
+                        {maxValueCategory.label} {maxValueCategory.value} Br
                     </div>
                 </div>
             </div>
