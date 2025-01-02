@@ -1,6 +1,7 @@
 package org.heyjiobum.fintrackbackend.app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,9 @@ public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotBlank
+    private String title;
 
     @OneToMany
     private List<Category> categories;
@@ -44,11 +48,13 @@ public class Budget {
         this.id = id;
     }
 
-    public Budget(List<Category> categories,
+    public Budget(String title,
+                  List<Category> categories,
                   BigDecimal amount,
                   Date fromDate,
                   Date toDate,
                   String description) {
+        this.title = title;
         this.categories = categories;
         this.amount = amount;
         this.fromDate = fromDate;
@@ -57,6 +63,7 @@ public class Budget {
     }
 
     public void updateBudget(Budget budget){
+        this.title = budget.title;
         this.categories = budget.categories;
         this.amount = budget.amount;
         this.fromDate = budget.fromDate;
