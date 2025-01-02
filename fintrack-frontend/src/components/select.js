@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-export default function Select({ options, selectedOptions, setSelectedOptions, isMultiSelect }) {
+// Option - object with id and name fields
+export default function Select({ options, selectedOptionIds, setSelectedOptions, isMultiSelect }) {
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef(null);
 
@@ -8,18 +9,18 @@ export default function Select({ options, selectedOptions, setSelectedOptions, i
         setIsOpen(!isOpen);
     };
 
-    const handleOptionToggle = (option) => {
+    const handleOptionToggle = (optionId) => {
         if (isMultiSelect) {
             let newSelectedOptions;
             
-            if (selectedOptions.includes(option))
-                newSelectedOptions = selectedOptions.filter(o => o !== option);
+            if (selectedOptionIds.includes(optionId))
+                newSelectedOptions = selectedOptionIds.filter(o => o !== optionId);
             else
-                newSelectedOptions = [...selectedOptions, option];
+                newSelectedOptions = [...selectedOptionIds, optionId];
 
             setSelectedOptions(newSelectedOptions);
         } else {
-            setSelectedOptions([option]);
+            setSelectedOptions([optionId]);
             setIsOpen(false);
         }
     };
@@ -45,7 +46,7 @@ export default function Select({ options, selectedOptions, setSelectedOptions, i
                 onClick={toggleDropdown}
                 className="w-full rounded border border-gray-300 bg-black p-2 text-center text-white"
             >
-                {isMultiSelect ? "Select Categories" : selectedOptions[0]}
+                {isMultiSelect ? "Select Categories" : options.filter((option) => selectedOptionIds.includes(option.id))[0]?.name}
             </button>
             {isOpen && (
                 <div className="absolute z-20 mt-1 w-full rounded border border-gray-300 bg-white shadow-lg">
@@ -53,8 +54,8 @@ export default function Select({ options, selectedOptions, setSelectedOptions, i
                         <label key={option.id} className="flex items-center p-2 hover:bg-gray-100">
                             <input
                                 type={isMultiSelect ? "checkbox" : "radio"}
-                                checked={selectedOptions.includes(option.name)}
-                                onChange={() => handleOptionToggle(option.name)}
+                                checked={selectedOptionIds.includes(option.id)}
+                                onChange={() => handleOptionToggle(option.id)}
                                 className="mr-2"
                             />
                             {option.name}

@@ -79,7 +79,7 @@ export default function DataHeader({
 
             <Select
                 options={availableCategories}
-                selectedOptions={chosenCategories}
+                selectedOptionIds={chosenCategories}
                 setSelectedOptions={(selected) =>
                     setDataHeaderState(prevState => ({
                         ...prevState,
