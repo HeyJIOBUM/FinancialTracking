@@ -1,6 +1,6 @@
 export default function SettingsPage() {
     return (
-        <div className="bg-yellow-100 border-l-8 border-yellow-500 text-yellow-700 p-4">
+        <div className="border-l-8 border-yellow-500 bg-yellow-100 p-4 text-yellow-700">
             This page is currently in development.
         </div>
         // TODO:
