@@ -24,3 +24,12 @@ export const formatDateToLocale = (date) => {
     const targetDate = new Date(date);
     return targetDate.toLocaleDateString().slice(0, 10);
 };
+
+export const  subtractMonthsFromDate = (date, months) => {
+    date.setMonth(date.getMonth() - months);
+    return date;
+}
+
+export const addMonthsToDate = (date, months) => {
+    return subtractMonthsFromDate(date, -months);
+}
