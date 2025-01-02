@@ -86,9 +86,9 @@ export default function MoneyOperationPage({
                         />
                     )
                 ) : (
-                    <p>
+                    <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
                         No {operationType.toLowerCase()}s available.
-                    </p>
+                    </div>
                 )
             }
 
