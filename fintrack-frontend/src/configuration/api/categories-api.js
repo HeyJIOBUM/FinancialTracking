@@ -34,7 +34,7 @@ export const categoriesApi = applicationApi.injectEndpoints({
                 method: 'PUT',
                 body: category,
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Category', id: arg.id }],
+            invalidatesTags: (result, error, arg) => [{ type: 'Category', id: arg.id }, 'Expense', 'Income', 'Budget'],
         }),
         deleteCategory: build.mutation({
             query: ({id}) => ({
