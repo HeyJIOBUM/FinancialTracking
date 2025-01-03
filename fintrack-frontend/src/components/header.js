@@ -8,6 +8,7 @@ import {deleteTokenCookie} from "@/app/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {logOut} from "@/redux/slices/auth-slice"
 import {useState} from "react";
+import {clearFilterData} from "@/redux/slices/filter-data-slice";
 
 export default function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function Header() {
     const handleLogOut = () => {
         deleteTokenCookie();
         dispatch(logOut());
+        dispatch(clearFilterData())
         window.location.reload();
     }
 

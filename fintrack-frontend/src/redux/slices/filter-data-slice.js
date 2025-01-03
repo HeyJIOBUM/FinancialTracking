@@ -59,6 +59,9 @@ export const filterDataSlice = createSlice({
             if (toDate) state.value.incomes.toDate = toDate;
             if (dataViewMode) state.value.incomes.dataViewMode = dataViewMode;
         },
+        clearFilterData: (state, action) => {
+            return filterDataInitialState;
+        }
     }
 });
 
@@ -66,7 +69,8 @@ export const {
     changeMoneyFlowFilterData,
     changeBudgetsFilterData,
     changeExpensesFilterData,
-    changeIncomesFilterData
+    changeIncomesFilterData,
+    clearFilterData
 } = filterDataSlice.actions;
 
 export default filterDataSlice.reducer;
