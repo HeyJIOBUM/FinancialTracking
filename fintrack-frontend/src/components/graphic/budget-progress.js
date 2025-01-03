@@ -28,6 +28,11 @@ export default function BudgetProgress({budget}) {
     const spentAmountWidth = expenseAmountProportion * progressBarSize.width
     const isExceededBudget = remainingAmount < 0;
 
+    const spentProgressLabel = `Spent: ${totalExpensesAmount.toFixed(2)} Br 
+                                       | ${isExceededBudget ? 
+                                       ('Overspending: ' +  (-remainingAmount).toFixed(2)) : 
+                                       ('Remaining: ' + remainingAmount.toFixed(2))} Br`
+
     return (
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md hover:scale-[1.01]">
             <h2 className="mb-4 text-xl font-semibold">
@@ -108,7 +113,7 @@ export default function BudgetProgress({budget}) {
                 )
             }
             <div className="mb-2 mt-1 text-sm text-gray-600">
-                Spent: {totalExpensesAmount.toFixed(2)} Br | Remaining: {remainingAmount.toFixed(2)} Br
+                {spentProgressLabel}
             </div>
         </div>
     );
