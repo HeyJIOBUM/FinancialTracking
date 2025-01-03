@@ -12,16 +12,17 @@ public class DefaultCategoriesSupplier implements Supplier<List<Category>> {
     @Override
     public List<Category> get() {
         return List.of(
-                new Category(0, OperationType.Expense, "Транспорт"),
-                new Category(0, OperationType.Expense, "Еда"),
-                new Category(0, OperationType.Expense, "Дом"),
-                new Category(0, OperationType.Expense, "Досуг"),
-                new Category(0, OperationType.Expense, "Налоги"),
-                new Category(0, OperationType.Expense, "Образование"),
-                new Category(0, OperationType.Expense, "Спорт"),
+                new Category(OperationType.Expense, "Transport"),
+                new Category(OperationType.Expense, "Food"),
+                new Category(OperationType.Expense, "House"),
+                new Category(OperationType.Expense, "Taxes"),
+                new Category(OperationType.Expense, "Education"),
+                new Category(OperationType.Expense, "Sport"),
 
-                new Category(0, OperationType.Income, "Зарплата"),
-                new Category(0, OperationType.Income, "Получил от мамы")
+                new Category(OperationType.Income, "Salary"),
+                new Category(OperationType.Income, "Investments"),
+                new Category(OperationType.Income, "Rental Income"),
+                new Category(OperationType.Income, "Gifts")
         );
     }
 }
