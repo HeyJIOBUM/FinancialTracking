@@ -1,17 +1,9 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-} from 'redux-persist'
+import {FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE,} from 'redux-persist'
 
 import authReducer from "@/redux/slices/auth-slice";
+import filterDataReducer from "@/redux/slices/filter-data-slice"
 import {applicationApi} from "@/configuration/api/application-api";
 
 const persistConfig = {
@@ -22,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     authReducer: authReducer,
+    filterDataReducer: filterDataReducer,
     [applicationApi.reducerPath]: applicationApi.reducer
 })
 
