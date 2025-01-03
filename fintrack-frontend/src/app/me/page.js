@@ -53,12 +53,14 @@ export default function MoneyFlowPage() {
                     <input
                         type="date"
                         value={dataRange.fromDate}
+                        name={'fromDate'}
                         onChange={handleDateChange}
                         className="rounded border border-gray-300 p-2"
                     />
                     <input
                         type="date"
                         value={dataRange.toDate}
+                        name={'toDate'}
                         onChange={handleDateChange}
                         className="rounded border border-gray-300 p-2"
                     />
