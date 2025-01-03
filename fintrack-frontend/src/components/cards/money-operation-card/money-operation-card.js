@@ -23,8 +23,6 @@ export default function MoneyOperationCard({
         deleteOperation({id: id})
     }
 
-    console.log(new Date(moneyOperation.date))
-
     return (
         <>
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md hover:scale-[1.01]">

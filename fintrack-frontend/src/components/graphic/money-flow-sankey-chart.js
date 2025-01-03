@@ -38,8 +38,6 @@ export default function MoneyFlowSankeyChart({ expenses, incomes }) {
     const flattenedExpenses = flattenMoneyOperations(expenses);
     const flattenedIncomes = flattenMoneyOperations(incomes);
 
-    console.log(flattenedExpenses);
-
     const prepareSankeysData = () => {
         const sankeysData = [["From", "To", "Weight", {type: 'string', role: 'tooltip'}]]
 
