@@ -20,7 +20,7 @@ public class ExpenseService {
         return userRepository.findExpenseByUsername(username);
     }
 
-    public List<Expense> addExpensesToUserByUsername(Expense expense, String username) {
+    public List<Expense> addExpenseToUserByUsername(Expense expense, String username) {
         Optional<MyUser> myUser = userRepository.findByUsername(username);
         if (myUser.isPresent()) {
             List<Expense> userExpenses = myUser.get().getExpenses();

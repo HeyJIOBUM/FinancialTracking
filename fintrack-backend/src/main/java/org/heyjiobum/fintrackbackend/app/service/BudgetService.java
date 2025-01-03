@@ -20,7 +20,7 @@ public class BudgetService {
         return userRepository.findBudgetsByUsername(username);
     }
 
-    public List<Budget> addBudgetsToUserByUsername(Budget budget, String username) {
+    public List<Budget> addBudgetToUserByUsername(Budget budget, String username) {
         Optional<MyUser> myUser = userRepository.findByUsername(username);
         if (myUser.isPresent()) {
             List<Budget> userBudgets = myUser.get().getBudgets();

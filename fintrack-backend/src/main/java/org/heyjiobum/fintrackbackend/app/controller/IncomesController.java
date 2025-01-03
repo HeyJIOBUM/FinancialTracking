@@ -24,7 +24,7 @@ public class IncomesController {
     @PostMapping("/me/incomes")
     public List<Income> addUserIncomes(@Valid @RequestBody Income income) {
         String username = this.getCurrentlyAuthenticatedUsername();
-        return incomeService.addIncomesToUserByUsername(income, username);
+        return incomeService.addIncomeToUserByUsername(income, username);
     }
 
     @DeleteMapping("/me/incomes/{incomeId}")

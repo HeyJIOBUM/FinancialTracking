@@ -24,7 +24,7 @@ public class BudgetsController {
     @PostMapping("/me/budgets")
     public List<Budget> addUserBudgets(@Valid @RequestBody Budget budget) {
         String username = this.getCurrentlyAuthenticatedUsername();
-        return budgetService.addBudgetsToUserByUsername(budget, username);
+        return budgetService.addBudgetToUserByUsername(budget, username);
     }
 
     @DeleteMapping("/me/budgets/{budgetId}")

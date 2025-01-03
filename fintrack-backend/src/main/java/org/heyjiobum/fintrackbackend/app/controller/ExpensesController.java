@@ -24,7 +24,7 @@ public class ExpensesController {
     @PostMapping("/me/expenses")
     public List<Expense> addUserExpenses(@Valid @RequestBody Expense expense) {
         String username = this.getCurrentlyAuthenticatedUsername();
-        return expenseService.addExpensesToUserByUsername(expense, username);
+        return expenseService.addExpenseToUserByUsername(expense, username);
     }
 
     @DeleteMapping("/me/expenses/{expenseId}")

@@ -20,7 +20,7 @@ public class IncomeService {
         return userRepository.findIncomesByUsername(username);
     }
 
-    public List<Income> addIncomesToUserByUsername(Income income, String username) {
+    public List<Income> addIncomeToUserByUsername(Income income, String username) {
         Optional<MyUser> myUser = userRepository.findByUsername(username);
         if (myUser.isPresent()) {
             List<Income> userIncomes = myUser.get().getIncomes();
