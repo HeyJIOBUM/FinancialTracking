@@ -56,27 +56,27 @@ export default function MoneyFlowPage() {
     const filteredIncomes = filterOperations(incomes);
 
     return (<>
-            <div className="mb-4 flex justify-center rounded-md border border-gray-300 px-8 py-4">
-                <div className="flex space-x-4">
-                    <input
-                        type="date"
-                        value={dataRange.fromDate}
-                        name={'fromDate'}
-                        onChange={handleDateChange}
-                        className="rounded border border-gray-300 p-2"
-                    />
-                    <input
-                        type="date"
-                        value={dataRange.toDate}
-                        name={'toDate'}
-                        onChange={handleDateChange}
-                        className="rounded border border-gray-300 p-2"
-                    />
-                </div>
+        <div className="mb-4 flex justify-center rounded-md border border-gray-300 px-8 py-4">
+            <div className="flex space-x-4">
+                <input
+                    type="date"
+                    value={dataRange.fromDate}
+                    name={'fromDate'}
+                    onChange={handleDateChange}
+                    className="rounded border border-gray-300 p-2"
+                />
+                <input
+                    type="date"
+                    value={dataRange.toDate}
+                    name={'toDate'}
+                    onChange={handleDateChange}
+                    className="rounded border border-gray-300 p-2"
+                />
             </div>
-            <MoneyFlowSankeyChart
-                expenses={filteredExpenses}
-                incomes={filteredIncomes}
-            />
-        </>);
+        </div>
+        <MoneyFlowSankeyChart
+            expenses={filteredExpenses}
+            incomes={filteredIncomes}
+        />
+    </>);
 }

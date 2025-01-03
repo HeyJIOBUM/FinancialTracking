@@ -2,7 +2,7 @@ import React from "react";
 import {pieArcLabelClasses, PieChart} from '@mui/x-charts/PieChart';
 
 
-export default function MoneyOperationGraphic({ moneyOperations, operationType, fromDate, toDate }) {
+export default function MoneyOperationGraphic({moneyOperations, operationType, fromDate, toDate}) {
     const totalAmount = moneyOperations.reduce((acc, op) => acc + op.amount, 0);
     const passedDays = Math.ceil((toDate - fromDate) / (1000 * 3600 * 24));
     const averageMoneyValue = (totalAmount / passedDays).toFixed(2);
@@ -27,7 +27,7 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
     }, []);
 
     const minValueCategory = preparedData.reduce((min, op) => {
-        return op.value < min.value ? op : min ;
+        return op.value < min.value ? op : min;
     }, {value: Infinity});
 
     const maxValueCategory = preparedData.reduce((max, op) => {
@@ -40,7 +40,7 @@ export default function MoneyOperationGraphic({ moneyOperations, operationType, 
                 width={800}
                 series={[
                     {
-                        data : preparedData,
+                        data: preparedData,
                         arcLabel: getArcLabel,
                         arcLabelMinAngle: 15,
                         arcLabelRadius: '60%',

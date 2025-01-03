@@ -4,7 +4,7 @@ import React from "react";
 import {Chart} from "react-google-charts";
 import {OperationType} from "@/types/operation-type";
 
-export default function MoneyFlowSankeyChart({ expenses, incomes }) {
+export default function MoneyFlowSankeyChart({expenses, incomes}) {
     const flattenMoneyOperations = (moneyOperations) => {
         return moneyOperations.reduce((acc, op) => {
             const existingCategory = acc.find(item => item.id === op.category.id);

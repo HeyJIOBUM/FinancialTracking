@@ -5,7 +5,7 @@ import {useAddExpenseMutation, useUpdateExpenseMutation} from "@/configuration/a
 import {OperationType} from "@/types/operation-type";
 import MoneyOperationEditModal from "@/components/edit-modals/money-operation-edit-modal/money-operation-edit-modal";
 
-export default function ExpenseEditModal({ isOpen, onClose, onSave, isEditing, expense }) {
+export default function ExpenseEditModal({isOpen, onClose, onSave, isEditing, expense}) {
     return (
         <MoneyOperationEditModal
             isOpen={isOpen}

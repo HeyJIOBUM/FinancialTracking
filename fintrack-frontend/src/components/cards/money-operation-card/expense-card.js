@@ -9,7 +9,7 @@ import {
 import MoneyOperationCard from "@/components/cards/money-operation-card/money-operation-card";
 import {OperationType} from "@/types/operation-type";
 
-export default function ExpenseCard({ expense }) {
+export default function ExpenseCard({expense}) {
     return (
         <MoneyOperationCard
             moneyOperation={expense}

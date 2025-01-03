@@ -31,7 +31,7 @@ export default function Header() {
                 href="https://github.com/HeyJIOBUM/FinancialTracking"
                 className="flex items-center gap-2 text-lg font-semibold"
             >
-                <Image alt={"Git"} src={"/github.svg"} width={30} height={30} />
+                <Image alt={"Git"} src={"/github.svg"} width={30} height={30}/>
                 <span>HeyJIOBUM FinancialTracking</span>
             </Link>
 

@@ -5,9 +5,9 @@ import {useEffect, useState} from "react";
 import {OperationType} from "@/types/operation-type";
 import {useAddCategoryMutation, useUpdateCategoryMutation} from "@/configuration/api/categories-api";
 
-export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, category }) {
-    const [ updateCategory, updateMutationResult ] = useUpdateCategoryMutation();
-    const [ addCategory, addMutationResult ] = useAddCategoryMutation();
+export default function CategoryEditModal({isOpen, onClose, onSave, isEditing, category}) {
+    const [updateCategory, updateMutationResult] = useUpdateCategoryMutation();
+    const [addCategory, addMutationResult] = useAddCategoryMutation();
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -28,7 +28,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
 
         onClose();
     };
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const categoryData = {
@@ -47,8 +47,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                 .catch((err) => {
                     setErrorMessage(err.error);
                 });
-        }
-        else {
+        } else {
             addCategory({category: categoryData})
                 .unwrap()
                 .then(() => {
@@ -71,7 +70,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                         aria-label="Close"
                         className="absolute right-2 top-[13px]"
                     >
-                        <CircleX strokeWidth={1} />
+                        <CircleX strokeWidth={1}/>
                     </button>
 
                     <form onSubmit={handleSubmit}>
@@ -121,7 +120,7 @@ export default function CategoryEditModal({ isOpen, onClose, onSave, isEditing, 
                             type="submit"
                             className="mt-4 rounded bg-black px-4 py-2 text-white transition duration-200 hover:bg-gray-800"
                         >
-                        Submit
+                            Submit
                         </button>
                     </form>
                 </div>

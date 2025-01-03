@@ -57,11 +57,11 @@ export const SideNavItem = ({label, icon, path, isActive}) => {
                 href={path}
                 className={
                     twMerge(
-                    "flex flex-row items-center px-2 text-sm py-1.5 space-x-2",
+                        "flex flex-row items-center px-2 text-sm py-1.5 space-x-2",
                         isActive ? "bg-blue-100" : "",
                     )
-            }
-                    >
+                }
+            >
                 {icon}
                 <span>{label}</span>
             </Link>

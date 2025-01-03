@@ -10,7 +10,7 @@ import AddElementButton from "@/configuration/action-buttons/add-element-button"
 
 export default function CategoriesPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { data: categories, error, isLoading } = useGetCategoriesQuery();
+    const {data: categories, error, isLoading} = useGetCategoriesQuery();
     const [selectedType, setSelectedType] = useState(OperationType.EXPENSE);
 
     const handleModalOpenToggle = () => {
@@ -18,7 +18,7 @@ export default function CategoriesPage() {
     }
 
     if (isLoading) {
-        return <Loading />;
+        return <Loading/>;
     }
 
     if (error) {
@@ -59,7 +59,7 @@ export default function CategoriesPage() {
             </div>
 
             <AddElementButton onClick={handleModalOpenToggle}/>
-            
+
             <CategoryEditModal
                 isOpen={isModalOpen}
                 onClose={handleModalOpenToggle}

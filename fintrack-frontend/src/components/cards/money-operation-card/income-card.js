@@ -5,7 +5,7 @@ import {useAddIncomeMutation, useDeleteIncomeMutation, useUpdateIncomeMutation} 
 import MoneyOperationCard from "@/components/cards/money-operation-card/money-operation-card";
 import {OperationType} from "@/types/operation-type";
 
-export default function IncomeCard({ income }) {
+export default function IncomeCard({income}) {
     return (
         <MoneyOperationCard
             moneyOperation={income}

@@ -94,30 +94,30 @@ export default function BudgetsPage() {
     const enrichedBudgets = extractExpensesFromBudgets(filteredBudgets, expenses);
 
     return (<div>
-            <DataHeader
-                categoriesOperationType={OperationType.EXPENSE}
-                dataHeaderState={dataHeaderState}
-                setDataHeaderState={setDataHeaderState}
-            />
+        <DataHeader
+            categoriesOperationType={OperationType.EXPENSE}
+            dataHeaderState={dataHeaderState}
+            setDataHeaderState={setDataHeaderState}
+        />
 
-            {/* Budgets */}
-            {enrichedBudgets.length > 0 ? (dataHeaderState.dataViewMode === DataViewMode.LIST ? (
-                    <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
-                        {enrichedBudgets.map(enrichedBudget => (
-                            <BudgetCard key={enrichedBudget.id} enrichedBudget={enrichedBudget}/>))}
-                    </div>) : (<BudgetGraphic
-                        enrichedBudgets={enrichedBudgets}
-                    />)) : (<div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
-                    No budgets available.
-                </div>)}
+        {/* Budgets */}
+        {enrichedBudgets.length > 0 ? (dataHeaderState.dataViewMode === DataViewMode.LIST ? (
+            <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
+                {enrichedBudgets.map(enrichedBudget => (
+                    <BudgetCard key={enrichedBudget.id} enrichedBudget={enrichedBudget}/>))}
+            </div>) : (<BudgetGraphic
+            enrichedBudgets={enrichedBudgets}
+        />)) : (<div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
+            No budgets available.
+        </div>)}
 
-            <AddElementButton onClick={handleModalOpenToggle}/>
+        <AddElementButton onClick={handleModalOpenToggle}/>
 
-            <BudgetEditModal
-                isOpen={isModalOpen}
-                onClose={handleModalOpenToggle}
-                onSave={handleModalOpenToggle}
-                isEditing={false}
-            />
-        </div>);
+        <BudgetEditModal
+            isOpen={isModalOpen}
+            onClose={handleModalOpenToggle}
+            onSave={handleModalOpenToggle}
+            isEditing={false}
+        />
+    </div>);
 }

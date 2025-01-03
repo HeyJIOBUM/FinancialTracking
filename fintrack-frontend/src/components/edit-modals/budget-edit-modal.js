@@ -9,9 +9,9 @@ import {useAddBudgetMutation, useUpdateBudgetMutation} from "@/configuration/api
 import {formatDateToISO} from "@/utils/date-utils";
 
 
-export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, budget }) {
-    const [ updateBudget, updateMutationResult ] = useUpdateBudgetMutation();
-    const [ addBudget, addMutationResult ] = useAddBudgetMutation();
+export default function BudgetEditModal({isOpen, onClose, onSave, isEditing, budget}) {
+    const [updateBudget, updateMutationResult] = useUpdateBudgetMutation();
+    const [addBudget, addMutationResult] = useAddBudgetMutation();
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -98,8 +98,7 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
                 .catch((err) => {
                     setErrorMessage(err.error);
                 });
-        }
-        else {
+        } else {
             addBudget({budget: budgetToSend})
                 .unwrap()
                 .then(() => {
@@ -122,7 +121,7 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
                         aria-label="Close"
                         className="absolute right-2 top-[13px]"
                     >
-                        <CircleX strokeWidth={1} />
+                        <CircleX strokeWidth={1}/>
                     </button>
 
                     <form onSubmit={handleSubmit}>
@@ -163,16 +162,16 @@ export default function BudgetEditModal({ isOpen, onClose, onSave, isEditing, bu
                                             borderColor: '#d2d2e6',
                                         },
                                     }),
-                                    option: (provided,{ data, isDisabled, isFocused, isSelected }) => {
+                                    option: (provided, {data, isDisabled, isFocused, isSelected}) => {
                                         provided = {
                                             ...provided,
                                             ':active': {
                                                 ...provided[':active'],
                                                 backgroundColor: '#bcc5cc',
                                             },
-                                            width : (provided.width - 10) + 'px',
-                                            marginRight : '5px',
-                                            marginLeft : '5px',
+                                            width: (provided.width - 10) + 'px',
+                                            marginRight: '5px',
+                                            marginLeft: '5px',
                                             borderRadius: '5px',
                                         }
 

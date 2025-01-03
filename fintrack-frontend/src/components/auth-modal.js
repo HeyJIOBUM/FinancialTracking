@@ -46,12 +46,11 @@ const AuthModal = ({isOpen, onClose, onAuthentication}) => {
         const authFunction = isSignInForm ? signIn : register;
 
         const {statusCode, message} = await authFunction({username, password});
-        if (statusCode === 200){
+        if (statusCode === 200) {
             dispatch(logIn(username));
             setErrorMessage(null);
             handleAuthentication();
-        }
-        else {
+        } else {
             setErrorMessage(message);
         }
     };

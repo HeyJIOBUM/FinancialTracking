@@ -1,12 +1,13 @@
 'use client'
 
-export default function Error({ error, reset }) {
+export default function Error({error, reset}) {
     const handleErrorReset = () => {
         window.location.reload();
     }
 
     return (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-red-500 bg-red-50 p-6 text-red-700">
+        <div
+            className="flex flex-col items-center justify-center rounded-lg border border-red-500 bg-red-50 p-6 text-red-700">
             <h2 className="mb-4 text-lg font-bold">Something went wrong!</h2>
             <button
                 onClick={handleErrorReset}

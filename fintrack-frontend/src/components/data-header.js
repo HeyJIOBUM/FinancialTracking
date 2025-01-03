@@ -10,16 +10,16 @@ export default function DataHeader({
                                        dataHeaderState,
                                        setDataHeaderState
                                    }) {
-    const { chosenCategories, fromDate, toDate, dataViewMode } = dataHeaderState;
+    const {chosenCategories, fromDate, toDate, dataViewMode} = dataHeaderState;
 
-    const { data: categories, error: categoriesError, isLoading: isCategoriesLoading } = useGetCategoriesQuery();
+    const {data: categories, error: categoriesError, isLoading: isCategoriesLoading} = useGetCategoriesQuery();
 
     if (categoriesError) {
         throw new Error(categoriesError.error);
     }
 
     if (isCategoriesLoading) {
-        return <Loading />;
+        return <Loading/>;
     }
 
     const availableCategories = categories.filter(category => category.operationType === categoriesOperationType);

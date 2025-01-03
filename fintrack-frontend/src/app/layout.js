@@ -10,7 +10,7 @@ const inter = Inter({
     subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({children}) {
     return (
         <html lang="en" suppressHydrationWarning>
         <body className={`${inter.className} w-full`}>
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
                 </main>
             </div>
         </ReduxProvider>
-        <ToastContainer />
+        <ToastContainer/>
         </body>
         </html>
     );

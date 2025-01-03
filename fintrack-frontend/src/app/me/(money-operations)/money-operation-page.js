@@ -75,42 +75,42 @@ export default function MoneyOperationPage({
     });
 
     return (<div>
-            <DataHeader
-                categoriesOperationType={operationType}
-                dataHeaderState={dataHeaderState}
-                setDataHeaderState={setDataHeaderState}
-            />
+        <DataHeader
+            categoriesOperationType={operationType}
+            dataHeaderState={dataHeaderState}
+            setDataHeaderState={setDataHeaderState}
+        />
 
-            {/* Operations */}
-            {filteredMoneyOperations.length > 0 ? (dataHeaderState.dataViewMode === DataViewMode.LIST ? (
-                    <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
-                        {filteredMoneyOperations.map(operation => (<MoneyOperationCard
-                                key={operation.id}
-                                moneyOperation={operation}
-                                operationType={operationType}
-                                useDeleteOperationMutation={useDeleteOperationMutation}
-                                useUpdateOperationMutation={useUpdateOperationMutation}
-                                useAddOperationMutation={useAddOperationMutation}
-                            />))}
-                    </div>) : (<MoneyOperationGraphic
-                        operationType={operationType}
-                        moneyOperations={filteredMoneyOperations}
-                        toDate={toDate}
-                        fromDate={fromDate}
-                    />)) : (<div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
-                    No {operationType.toLowerCase()}s available.
-                </div>)}
+        {/* Operations */}
+        {filteredMoneyOperations.length > 0 ? (dataHeaderState.dataViewMode === DataViewMode.LIST ? (
+            <div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
+                {filteredMoneyOperations.map(operation => (<MoneyOperationCard
+                    key={operation.id}
+                    moneyOperation={operation}
+                    operationType={operationType}
+                    useDeleteOperationMutation={useDeleteOperationMutation}
+                    useUpdateOperationMutation={useUpdateOperationMutation}
+                    useAddOperationMutation={useAddOperationMutation}
+                />))}
+            </div>) : (<MoneyOperationGraphic
+            operationType={operationType}
+            moneyOperations={filteredMoneyOperations}
+            toDate={toDate}
+            fromDate={fromDate}
+        />)) : (<div className="flex flex-col gap-4 rounded border border-gray-300 p-4">
+            No {operationType.toLowerCase()}s available.
+        </div>)}
 
-            <AddElementButton onClick={handleModalOpenToggle}/>
+        <AddElementButton onClick={handleModalOpenToggle}/>
 
-            <MoneyOperationEditModal
-                isOpen={isModalOpen}
-                onClose={handleModalOpenToggle}
-                onSave={handleModalOpenToggle}
-                isEditing={false}
-                operationType={operationType}
-                useUpdateOperationMutation={useUpdateOperationMutation}
-                useAddOperationMutation={useAddOperationMutation}
-            />
-        </div>);
+        <MoneyOperationEditModal
+            isOpen={isModalOpen}
+            onClose={handleModalOpenToggle}
+            onSave={handleModalOpenToggle}
+            isEditing={false}
+            operationType={operationType}
+            useUpdateOperationMutation={useUpdateOperationMutation}
+            useAddOperationMutation={useAddOperationMutation}
+        />
+    </div>);
 }

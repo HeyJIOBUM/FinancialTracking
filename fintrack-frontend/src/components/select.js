@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 
 // Option - object with id and name fields
-export default function Select({ options, selectedOptionIds, setSelectedOptions, isMultiSelect }) {
+export default function Select({options, selectedOptionIds, setSelectedOptions, isMultiSelect}) {
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef(null);
 
@@ -12,7 +12,7 @@ export default function Select({ options, selectedOptionIds, setSelectedOptions,
     const handleOptionToggle = (optionId) => {
         if (isMultiSelect) {
             let newSelectedOptions;
-            
+
             if (selectedOptionIds.includes(optionId))
                 newSelectedOptions = selectedOptionIds.filter(o => o !== optionId);
             else

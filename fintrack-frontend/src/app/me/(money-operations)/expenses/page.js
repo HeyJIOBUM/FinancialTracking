@@ -18,6 +18,6 @@ export default function ExpensesPage() {
             useDeleteOperationMutation={useDeleteExpenseMutation}
             useUpdateOperationMutation={useUpdateExpenseMutation}
             useAddOperationMutation={useAddExpenseMutation}
-      />
+        />
     );
 }
